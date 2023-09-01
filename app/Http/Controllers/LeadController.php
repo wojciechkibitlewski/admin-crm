@@ -147,7 +147,7 @@ class LeadController extends Controller
 
         $sources = Salessource::where('user_id',Auth::user()->id)->orderBy('source')->get();
         $types = Salestype::where('user_id',Auth::user()->id)->orderBy('order')->get();
-        $leads = Lead::where('user_id',Auth::user()->id)->orderBy('executionDate','desc')->paginate(10);
+        $leads = Lead::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->paginate(10);
         return view('leads.index',
         [
             'leads' => $leads,
@@ -394,6 +394,7 @@ class LeadController extends Controller
     {
         $lead = Lead::where('user_id',Auth::user()->id)->where('id', $request->id)->first();
         
+        LeadProduct::where('lead_id',$lead->id)->delete();
         Lead::whereId($lead->id)->delete();
         
         $activity = new Activity;
