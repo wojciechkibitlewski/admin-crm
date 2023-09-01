@@ -1,5 +1,4 @@
 <!-- Sidenav -->
-
 <nav
     id="sidenav-2"
     class="fixed right-0 top-0 z-[1035] flex-none
@@ -20,7 +19,7 @@
         <ul
         class="relative m-0 list-none px-[0.2rem]"
         data-te-sidenav-menu-ref>
-            <li>Notifications and Activities</li>
+            <li>{{__('sidenav.notifications')}}</li>
             @livewire('activity')
         
         </ul>

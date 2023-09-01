@@ -11,14 +11,17 @@
         <!-- Fonts -->
 
         <!-- Scripts -->
-        @vite(['/resources/js/app.js'])
+        @vite(['resources/js/app.js', 'resources/css/app.css'])
+        @vite(['resources/js/light-mode.js',])
+
         <!-- Styles -->
         @livewireStyles
     </head>
     <body class="antialiased relative font-sans font-inter
     text-sm text-black font-normal overflow-x-hidden vertical
-    bg-gray-100 
+    bg-gray-300 text-gray-800
     dark:bg-black dark:text-gray-100" >
+    
         <div class="w-full flex flex-nowrap items-center justify-between">
             <div class="p-4 dark:bg-black">
                 <a href="{{route('welcome')}}" class="flex-1 w-full">
@@ -29,51 +32,31 @@
 
             <div class="flex flex-wrap items-center pr-6">
                 <!-- dark / light mode  -->
-                <a id="theme-switcher"
-                    class="px-2 py-2 text-sm font-normal text-gray-700 cursor-pointer
-                    invisible
-                    disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 
-                    dark:text-gray-100 dark:visible" 
-                    data-theme="light">
-                    <div class="pointer-events-none">
-                    <div class="inline-block w-[24px] text-center"
-                        data-theme-icon="light">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                        fill="currentColor"
-                        class="inline-block h-5 w-5">
-                        <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
-                        </svg>
-                    </div>
-                    </div>
+                <x-a-light-mode />
+                <!-- join now  -->
+                <a href="{{route('register')}}" title="{{__('auth.joinnow')}}" class="p-1 px-2 ">
+                    <svg xmlns="http://www.w3.org/2000/svg" 
+                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="md:hidden w-6 h-6 inline">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+                    </svg>
+                    <p class="hidden md:inline-block ">{{__('auth.joinnow')}}</p>
                 </a>
-                <a id="theme-switcher"
-                    class="px-2 py-2 text-sm font-normal text-gray-700 cursor-pointer
-                    disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 
-                    dark:text-gray-100 dark:hidden "
-                    data-theme="dark"
-                    data-te-dropdown-item-ref>
-                    <div class="pointer-events-none">
-                    <div class="inline-block w-[24px] text-center"
-                        data-theme-icon="dark">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                        class="inline-block h-5 w-5">
-                        <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    </div>
+                <!-- sign in  -->
+                <a href="{{route('login')}}" title="{{__('auth.signin')}}" class="p-1 px-2 border border-gray-300 rounded">
+                    <svg xmlns="http://www.w3.org/2000/svg" 
+                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="md:hidden w-6 h-6 inline">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                    </svg>
+                    <p class="hidden md:inline-block ">{{__('auth.signin')}}</p>
                 </a>
-
-                <a href="{{route('register')}}" title="" class="p-1 px-2">Sign up</a>
-                <a href="{{route('login')}}" title="" class="p-1 px-2 border border-gray-300 rounded">Login</a>
 
             </div>
-
         </div> 
-    
     
         <div class="">
             {{ $slot }}
         </div>
+
         @stack('modals')
         @livewireScripts
     </body>

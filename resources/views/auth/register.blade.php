@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-authentication-card>
-        <h1 class="text-3xl font-bold text-center mb-8">Sign up</h1>
+        <h1 class="text-3xl font-bold text-center mb-8">{{__('auth.register_h1')}}</h1>
 
         <x-validation-errors class="mb-4" />
 
@@ -8,22 +8,22 @@
             @csrf
 
             <div>
-                <x-label for="name" value="{{ __('Name') }}" />
+                <x-label for="name" value="{{__('auth.name')}}" />
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
             <div class="mt-4">
-                <x-label for="email" value="{{ __('Email') }}" />
+                <x-label for="email" value="{{__('auth.email')}}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             </div>
 
             <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
+                <x-label for="password" value="{{__('auth.password')}}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
 
             <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                <x-label for="password_confirmation" value="{{__('auth.confirm_password')}}" />
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
@@ -45,9 +45,9 @@
             @endif
 
             <x-button class="">
-                {{ __('Sign up') }}
+                {{ __('auth.register') }}
             </x-button>
-            <p class="mt-2 text-center">Already have an Account? <a href="{{route('login')}}" class="text-gray-400 underline" title="">Sign in</a></p>
+            <p class="mt-2 text-center">{{__('auth.have_account')}} <a href="{{route('login')}}" class="text-gray-400 underline" title="">{{__('auth.signin')}}</a></p>
         </form>
     </x-authentication-card>
 </x-guest-layout>

@@ -1,15 +1,15 @@
 <x-guest-layout>
     <x-authentication-card>
-        <h1 class="text-3xl font-bold text-center mb-8">Verify your email</h1>
+        <h1 class="text-3xl font-bold text-center mb-8">{{__('auth.verify_h1')}}</h1>
 
 
         <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-            {{ __('Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+            {{ __('auth.verify_p1') }}
         </div>
 
         @if (session('status') == 'verification-link-sent')
             <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-                {{ __('A new verification link has been sent to the email address you provided in your profile settings.') }}
+                {{ __('auth.verify_p2') }}
             </div>
         @endif
 
@@ -19,7 +19,7 @@
 
                 <div>
                     <x-button type="submit">
-                        {{ __('Resend Verification Email') }}
+                        {{ __('auth.verify_resent') }}
                     </x-button>
                 </div>
             </form>
@@ -29,13 +29,13 @@
                     href="{{ route('profile.show') }}"
                     class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                 >
-                    {{ __('Edit Profile') }}</a>
+                    {{ __('auth.edit_profile') }}</a>
 
                 <form method="POST" action="{{ route('logout') }}" class="inline">
                     @csrf
 
                     <button type="submit" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 ml-2">
-                        {{ __('Log Out') }}
+                        {{ __('auth.logout') }}
                     </button>
                 </form>
             </div>

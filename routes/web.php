@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LeadController;
+use App\Http\Controllers\ReportsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,23 +35,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
     ])->group(function () {
         
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-        // Route::get('/dashboard', function () {
-        //     return view('dashboard');
-        // })->name('dashboard');
-
-        Route::get('/sales/index', function () {
-            return view('sales.index');
-        })->name('sales.index');
-        Route::get('/sales/search', function () {
-            return view('sales.search');
-        })->name('sales.search');
-        Route::get('/sales/create', function () {
-            return view('sales.create');
-        })->name('sales.create');
-        Route::get('/sales/show/{id}', function () {
-            return view('sales.show');
-        })->name('sales.show');
+        
+        // reports
+        Route::get('reports', [ReportsController::class, 'index'])->name('reports');
 
         // settings
         Route::get('/settings', function() { 

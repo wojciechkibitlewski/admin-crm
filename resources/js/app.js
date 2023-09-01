@@ -1,6 +1,5 @@
 import './bootstrap';
-import '../css/app.css';
-
+// 
 import Alpine from 'alpinejs';
 import focus from '@alpinejs/focus';
 window.Alpine = Alpine;
@@ -86,45 +85,4 @@ if (window.innerWidth < sidenavInstance3.getBreakpoint("sm")) {
 
 // Event listeners
 window.addEventListener("resize", setMode3)
-
-
-
-// Dark mode 
-// On page load or when changing themes, best to add inline in `head` to avoid FOUC
-if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-  document.documentElement.classList.add('dark');
-} else {
-  document.documentElement.classList.remove('dark');
-};
-  
-function setDarkTheme() {
-  document.documentElement.classList.add("dark");
-  localStorage.theme = "dark";
-};
-  
-function setLightTheme() {
-  document.documentElement.classList.remove("dark");
-  localStorage.theme = "light";
-};
-  
-function onThemeSwitcherItemClick(event) {
-  const theme = event.target.dataset.theme;
-  console.log(theme);
-
-  if (theme === "system") {
-    localStorage.removeItem("theme");
-    setSystemTheme();
-  } else if (theme === "dark") {
-    setDarkTheme();
-  } else {
-    setLightTheme();
-  }
-};
-  
-const themeSwitcherItems = document.querySelectorAll("#theme-switcher");
-
-
-themeSwitcherItems.forEach((item) => {
-  item.addEventListener("click", onThemeSwitcherItemClick);
-});
 

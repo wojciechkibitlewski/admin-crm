@@ -1,10 +1,10 @@
 <x-guest-layout>
     <x-authentication-card>
-        <h1 class="text-3xl font-bold text-center mb-8">Forgot your password?</h1>
+        <h1 class="text-3xl font-bold text-center mb-8">{{__('auth.password_forgot')}}</h1>
 
 
         <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-            {{ __('No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+            {{ __('auth.forgot_p') }}
         </div>
 
         @if (session('status'))
@@ -19,15 +19,15 @@
             @csrf
 
             <div class="block">
-                <x-label for="email" value="{{ __('Email') }}" />
+                <x-label for="email" value="{{ __('auth.email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             </div>
 
             
             <x-button class="">
-                {{ __('Email Password Reset Link') }}
+                {{ __('auth.eprl') }}
             </x-button>
-            <p class="mt-2 text-center">Not a Member yet? <a href="{{route('register')}}" class="text-gray-400 underline" title="">Sign Up</a></p>
+            <p class="mt-2 text-center">{{__('auth.dont_have_account')}} <a href="{{route('register')}}" class="text-gray-400 underline" title="">{{__('auth.joinnow')}}</a></p>
 
         </form>
     </x-authentication-card>

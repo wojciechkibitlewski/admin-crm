@@ -13,6 +13,12 @@ use App\Models\ProductCategory;
 
 class Helper
 {
+    public static function getMonthName(string $string)
+    {
+        
+
+        return $user->profile_photo_url;
+    }
     public static function userPhoto(string $string)
     {
         $user = User::findOrFail($string);
