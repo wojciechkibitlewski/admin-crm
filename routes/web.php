@@ -11,16 +11,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\ReportsController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+
 Route::group(['prefix' => LaravelLocalization::setLocale()], function()
 {
     Route::get('/', function () {
@@ -34,6 +25,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         'verified',
     ])->group(function () {
         
+        // dashboard
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         
         // reports

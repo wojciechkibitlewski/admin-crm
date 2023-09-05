@@ -57,7 +57,18 @@ class DashboardController extends Controller
 
         //dd($locale);
 
-        return view('dashboard',compact('sales','clients','days','num_days_last_month','first_day_of_week','currentDay','num_days','leads','currentYear','currentMonth' ));
+        return view('dashboard.index',[
+            'sales' => $sales,
+            'clients' => $clients,
+            'days' => $days,
+            'num_days_last_month' => $num_days_last_month,
+            'first_day_of_week' => $first_day_of_week,
+            'currentDay' => $currentDay,
+            'num_days' => $num_days,
+            'leads' => $leads,
+            'currentYear' => $currentYear,
+            'currentMonth' =>$currentMonth,
+        ]);
     }
 }
 

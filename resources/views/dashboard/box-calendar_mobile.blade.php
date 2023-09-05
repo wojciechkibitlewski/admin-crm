@@ -37,11 +37,9 @@
                 <div class="w-full">{{ $i }}</div>
                 @foreach ($leads as $lead)
                     @if (date('y-m-d', strtotime($currentYear . '-' . $currentMonth . '-' . $i . '')) == date('y-m-d', strtotime($lead->executionDate)))
-                        <button class="rounded-full border border-gray-400 p-1 mb-1 bg-gray-800 dark:bg-gray-200 dark:text-gray-800" type="button"
-                            data-te-toggle="modal"
-                            data-te-target="#calendarModal"
-                            data-te-ripple-init
-                            data-te-ripple-color="light"
+                        <button class="rounded-full border border-gray-400 p-1 mb-1 bg-gray-800 dark:bg-gray-200 dark:text-gray-800" 
+                            type="button"
+                            onclick="Livewire.emit('openModal', 'calendar.show-event', {{ json_encode(['lead_id' => $lead->id]) }})"
                             >
                             <svg xmlns="http://www.w3.org/2000/svg" 
                             fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"                            

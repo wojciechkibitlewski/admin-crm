@@ -18,29 +18,38 @@
     </head>
 
     <body 
-    class="antialiased relative font-sans font-inter  
-    text-sm  font-normal overflow-x-hidden vertical
-    bg-gray-300 text-gray-800
-    dark:bg-black dark:text-gray-100">
-        
-        <div class="flex w-full ">
-            <!-- navigation menu  -->
-            @include('layouts.sidenav')
-            <div id="content" class="!pl-[260px] w-full min-h-screen">
-                <!-- Navbar -->
-                @include('layouts.navbar')
-                <!--Main layout-->
-                <main class="pt-[26px] xl:pt-2 ">
-                    {{ $slot }}
-                </main>
-                <!--Footer-->
-                <footer>
+    class="antialiased bg-white text-gray-600 
+    dark:bg-black dark:text-gray-200">
+    <div 
+    class="relative z-[10] sticky top-0 h-16 md:h-20 flex justify-between items-center w-full p-2 px-4 border-b 
+    bg-gray-50 md:bg-white 
+    border-white md:border-gray-200
+    md:p-4     
+    dark:bg-black dark:border-gray-600">
+        <div  class="flex items-center">
+            @include('layouts.elements.sidenav-button')
+            @include('layouts.elements.logo')
+        </div>
+        <div class="flex items-center">
+            @include('layouts.elements.light-switch')
+            @include('layouts.elements.user-menu')
 
-                </footer>
-            </div>
-            @include('layouts.notification')
-        </div> 
-        @stack('modals')
-        @livewireScripts
-    </body>
+        </div>
+    </div>
+    
+    <div class="w-full">
+        @include('layouts.elements.sidenav-left-mobile')
+        @include('layouts.elements.sidenav-left')
+        <div class="" style="padding-left:-256px !important;" id="content">
+            {{ $slot }}
+        </div>
+        
+    </div>
+
+    @stack('modals')
+    @livewire('livewire-ui-modal')
+    @livewireScripts
+</body>
+
+
 </html>

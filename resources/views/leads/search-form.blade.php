@@ -1,27 +1,27 @@
 
 <form action="{{ route('leads.search') }}" method="POST" >
     @csrf
-    <p class="font-bold text-lg ">Szukaj zamówień</p>
-    <div class="flex flex-row items-center ">
-        <div class="basis-1/3">
+    <div class="md:flex md:flex-row items-center ">
+        <div class="md:basis-1/3">
             <p>Zakres dat</p>
         </div>
-        <div class="basis-1/3 mr-4">
+        <div class="md:basis-1/3 md:mr-4">
             <input type="date" class="block mt-2 w-full border-gray-300 rounded-md dark:text-black" 
             name="date_start" value="{{$startDate}}" 
             autocomplete="date_start" />
         </div>
-        <div class="basis-1/3">
+        <div class="md:basis-1/3">
             <input type="date" class="block mt-2 w-full border-gray-300 rounded-md dark:text-black" 
             name="date_end" value="{{$endDate}}" 
             autocomplete="date_end" />
         </div>
     </div>
-    <div class="flex flex-row items-center ">
-        <div class="basis-1/3">
+
+    <div class="md:flex md:flex-row items-center mt-6 ">
+        <div class="md:basis-1/3">
             <p>Stan realizacji</p>
         </div>
-        <div class="basis-1/3 mr-4">
+        <div class="md:basis-1/3 mr-4">
             <select
             class="block mt-1 w-full border-gray-300 rounded-md dark:text-black"
             id="type_id" name="type_id" value="old('type_id')">   
@@ -31,7 +31,7 @@
                 @endforeach
             </select>
         </div>
-        <div class="basis-1/3">
+        <div class="md:basis-1/3">
             
         </div>
     </div>

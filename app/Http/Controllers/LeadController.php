@@ -116,7 +116,7 @@ class LeadController extends Controller
         // pytanie
         $leadsQuery->where($require)
                 ->orderBy('executionDate', 'desc');
-        $leads = $leadsQuery->paginate(10);
+        $leads = $leadsQuery->paginate(15);
         
         $sources = Salessource::where('user_id',Auth::user()->id)->orderBy('source')->get();
         $types = Salestype::where('user_id',Auth::user()->id)->orderBy('order')->get();
@@ -133,7 +133,7 @@ class LeadController extends Controller
                 'endDate' =>$endDate,
                 'value' => $value,
             ])
-            ->with('i', (request()->input('page', 1) - 1) * 10);
+            ->with('i', (request()->input('page', 1) - 1) * 15);
     }
     
     
@@ -147,7 +147,7 @@ class LeadController extends Controller
 
         $sources = Salessource::where('user_id',Auth::user()->id)->orderBy('source')->get();
         $types = Salestype::where('user_id',Auth::user()->id)->orderBy('order')->get();
-        $leads = Lead::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->paginate(10);
+        $leads = Lead::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->paginate(15);
         return view('leads.index',
         [
             'leads' => $leads,
@@ -159,7 +159,7 @@ class LeadController extends Controller
             'endDate' =>$endDate,
             'value' => $value,
         ])
-        ->with('i', (request()->input('page', 1) - 1) * 10);    }
+        ->with('i', (request()->input('page', 1) - 1) * 15);    }
 
 
     public function create()

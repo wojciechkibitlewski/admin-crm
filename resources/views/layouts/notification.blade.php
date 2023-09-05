@@ -1,4 +1,5 @@
 <!-- Sidenav -->
+<!-- 
 <nav
     id="sidenav-2"
     class="fixed right-0 top-0 z-[1035] flex-none
@@ -24,6 +25,6 @@
         
         </ul>
     </div>
-</nav>
+</nav> -->
 
 <!-- Sidenav -->

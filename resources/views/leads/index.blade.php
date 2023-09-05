@@ -1,17 +1,37 @@
 <x-app-layout>
-    <div class="p-4 sm:p-7">
-        
-        <div class="bg-white rounded-xl p-4 dark:bg-gray-800 mb-8 ">
-            <div class="w-full overflow-x-auto" >
-                @include('leads.search-form')
-            </div>
+    <x-a-header style="z-index:1;">
+        <x-a-header-button-search 
+        data-te-toggle="modal"
+        data-te-target="#modalSearchLead"
+        data-te-ripple-init
+        data-te-ripple-color="light"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
+            class="w-6 h-6 inline">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+                <span class="hidden md:inline-block  md:ml-2">
+                    {{__('Szukaj zamówień')}}
+                </span>
+        </x-a-header-button-search>
+        <div class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
+            class="w-5 h-5 inline mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+            <x-a-title-header title="{{__('Zamówienia')}}" />
         </div>
-    
+    </x-a-header>    
+
+    <div class="p-4 sm:p-7">
+<!--     
         <div class="md:flex md:flex-row-reverse gap-4 items-center justify-between mb-4">
             <a class="p-2 px-4 bg-gray-200 dark:bg-gray-800 rounded-md" href="{{route('leads.create')}}" title="">Dodaj nowe zamówienie</a>
 
             <h1 class="font-bold text-lg ">Zamówienia</h1>
-        </div>
+        </div> -->
+
+
         @if ($message = Session::get('success'))
             <div class="bg-sky-100 rounded-xl p-4 dark:bg-sky-800 mb-4">
                 <p>{{ $message }}</p>
@@ -136,7 +156,7 @@
     </div>
   </div>
 </div>
-
+@include('leads.modals.modalSearchLead')
 </x-app-layout>
 <script>
     /// delete row
