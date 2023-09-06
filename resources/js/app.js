@@ -29,3 +29,6 @@ initTE({ Dropdown, Sidenav, Stepper, Select, Input, Timepicker, Tab, Modal, Ripp
 let content = document.getElementById("content");
 content.style +=" padding-left:-256px; ";
 
+///////////
+const picker = document.querySelector("#time");
+const tpFormat24 = new Timepicker(picker, { format24: true, });

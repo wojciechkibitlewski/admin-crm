@@ -35,11 +35,11 @@
             
         </div>
     </div>
-    <div class="flex flex-row items-center ">
-        <div class="basis-1/3">
+    <div class="md:flex md:flex-row items-center mt-6">
+        <div class="md:basis-1/3">
             <p>Źródło pozyskania klienta</p>
         </div>
-        <div class="basis-1/3 mr-4">
+        <div class="md:basis-1/3 mr-4">
             <select
             class="block mt-1 w-full border-gray-300 rounded-md dark:text-black"
             id="source_id" name="source_id" value="old('source_id')">   
@@ -49,15 +49,15 @@
                 @endforeach
             </select>
         </div>
-        <div class="basis-1/3">
+        <div class="md:basis-1/3">
             
         </div>
     </div>
-    <div class="flex flex-row items-center ">
-        <div class="basis-1/3">
+    <div class="md:flex md:flex-row items-center mt-6">
+        <div class="md:basis-1/3">
             <p>Płatność</p>
         </div>
-        <div class="basis-1/3 mr-4">
+        <div class="md:basis-1/3 mr-4">
             <select
             class="block mt-1 w-full border-gray-300 rounded-md dark:text-black"
             id="value" name="value" value="old('value')">   
@@ -66,17 +66,17 @@
                 <option value="2" {{ $value == 2 ? 'selected' : '' }}>opłacone</option> 
             </select>
         </div>
-        <div class="basis-1/3">
+        <div class="md:basis-1/3">
             
         </div>
     </div>
-    <div class="flex flex-row items-center ">
-        <div class="basis-1/3">
+    <div class="md:flex md:flex-row items-center mt-6">
+        <div class="md:basis-1/3">
         </div>
-        <div class="basis-1/3 mr-4">
+        <div class="md:basis-1/3 mr-4">
             
         </div>
-        <div class="basis-1/3">
+        <div class="md:basis-1/3">
             <button type="submit" 
             class="block w-full rounded-md bg-gray-600 py-4 font-medium text-white mt-4">
             {{ __('Szukaj zamówień')}}

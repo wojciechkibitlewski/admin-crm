@@ -1,11 +1,12 @@
 <div>
-    <div class="mb-4 p-4 bg-gray-200 rounded-md">
-        <label for="name" class="">{{__('Wyszukaj w bazie klientów')}}</label>
+    <div class="mb-4">
+        <label for="name" class="">{{__('Imię, nazwisko')}}<span class="text-red-600"> (*)</label>
         <input id="name" type="text" 
         class="block mt-2 w-full border-gray-300 rounded-md
         dark:text-black" 
+        name="client_name" value="{{ !empty($clientDetails) ? $clientDetails->name : old('client_name') }}"  
         wire:model="search" wire:keyup="searchResult"
-        />
+        required />
 
         @if($showresult)
         <ul class="w-full bg-white border rounded" >
@@ -19,20 +20,7 @@
         <div class="clear"></div>
         @error('client_name')
             <div class="mt-2 p-2 rounded bg-red-400">{{ $message }}</div>
-        @enderror  
-    </div>
-
-    <div class="mb-4">
-        <label for="name" class="">{{__('Imię, nazwisko*')}}</label>
-        <input id="name" type="text" 
-        class="block mt-2 w-full border-gray-300 rounded-md
-        dark:text-black" 
-        name="client_name" value="{{ !empty($clientDetails) ? $clientDetails->name : old('client_name') }}"  
-        required />
-
-        @error('client_name')
-            <div class="mt-2 p-2 rounded bg-red-400">{{ $message }}</div>
-        @enderror  
+        @enderror   
     </div>
     <!--mail -->   
     <div class="mb-4">

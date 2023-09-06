@@ -27,19 +27,19 @@
     md:p-4     
     dark:bg-black dark:border-gray-600">
         <div  class="flex items-center">
-            @include('layouts.elements.sidenav-button')
-            @include('layouts.elements.logo')
+            @include('layouts.includes.sidenav-button')
+            @include('layouts.includes.logo')
         </div>
         <div class="flex items-center">
-            @include('layouts.elements.light-switch')
-            @include('layouts.elements.user-menu')
+            @include('layouts.includes.light-switch')
+            @include('layouts.includes.user-menu')
 
         </div>
     </div>
     
     <div class="w-full">
-        @include('layouts.elements.sidenav-left-mobile')
-        @include('layouts.elements.sidenav-left')
+        @include('layouts.includes.sidenav-left-mobile')
+        @include('layouts.includes.sidenav-left')
         <div class="" style="padding-left:-256px !important;" id="content">
             {{ $slot }}
         </div>

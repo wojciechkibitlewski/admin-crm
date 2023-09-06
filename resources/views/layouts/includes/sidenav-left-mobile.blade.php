@@ -9,7 +9,7 @@
 
         <ul class="relative overflow-y-auto overflow-x-hidden p-4 py-0 z-[9]" data-te-sidenav-menu-ref>
             <li class="relative mb-2" >
-            @include('layouts.elements.logo-sidebar')
+            @include('layouts.includes.logo-sidebar')
             </li>
             <li class="relative mb-2" >
                 @include('layouts.nav.link-dashboard')         

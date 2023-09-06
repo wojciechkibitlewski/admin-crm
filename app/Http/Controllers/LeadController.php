@@ -36,7 +36,7 @@ class LeadController extends Controller
         $leads = Lead::query()
             ->whereBetween('executionDate', [$startDate, $endDate ])
             ->orderBy('executionDate', 'desc')
-            ->paginate(10);
+            ->paginate(20);
         
         $sources = Salessource::where('user_id',Auth::user()->id)->orderBy('source')->get();
         $types = Salestype::where('user_id',Auth::user()->id)->orderBy('order')->get();
@@ -53,7 +53,7 @@ class LeadController extends Controller
                 'endDate' =>$endDate,
                 'value' => $value,
             ])
-            ->with('i', (request()->input('page', 1) - 1) * 10);
+            ->with('i', (request()->input('page', 1) - 1) * 20);
 
 
     }
@@ -116,7 +116,7 @@ class LeadController extends Controller
         // pytanie
         $leadsQuery->where($require)
                 ->orderBy('executionDate', 'desc');
-        $leads = $leadsQuery->paginate(15);
+        $leads = $leadsQuery->paginate(20);
         
         $sources = Salessource::where('user_id',Auth::user()->id)->orderBy('source')->get();
         $types = Salestype::where('user_id',Auth::user()->id)->orderBy('order')->get();
@@ -133,7 +133,7 @@ class LeadController extends Controller
                 'endDate' =>$endDate,
                 'value' => $value,
             ])
-            ->with('i', (request()->input('page', 1) - 1) * 15);
+            ->with('i', (request()->input('page', 1) - 1) * 20);
     }
     
     
@@ -147,7 +147,7 @@ class LeadController extends Controller
 
         $sources = Salessource::where('user_id',Auth::user()->id)->orderBy('source')->get();
         $types = Salestype::where('user_id',Auth::user()->id)->orderBy('order')->get();
-        $leads = Lead::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->paginate(15);
+        $leads = Lead::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->paginate(20);
         return view('leads.index',
         [
             'leads' => $leads,
@@ -159,7 +159,7 @@ class LeadController extends Controller
             'endDate' =>$endDate,
             'value' => $value,
         ])
-        ->with('i', (request()->input('page', 1) - 1) * 15);    }
+        ->with('i', (request()->input('page', 1) - 1) * 20);    }
 
 
     public function create()
@@ -259,7 +259,9 @@ class LeadController extends Controller
                 }
             
             }
-            return redirect()->route('leads.index');
+            return redirect()
+                    ->route('leads.show', $lead->id)
+                    ->with('success','Zamówienie created successfully.');
             
         }
         

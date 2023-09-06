@@ -1,8 +1,8 @@
 <div>
-    <div class="relative mb-[100px] p-4">
-        <div class="flex flex-row">
-            <div class="w-[60%] mr-4">
-                <label for="type_id" class="block mb-2 w-full">{{__('Wybierz usługę/produkt*')}}</label>
+    <div class="relative mb-[100px]">
+        <div class="md:flex md:flex-row">
+            <div class="md:w-[60%] md:mr-4 mb-4">
+                <label for="type_id" class="block mb-2 w-full">{{__('Wybierz usługę/produkt')}}<span class="text-red-600"> (*)</label></label>
                 <select class="block mt-1 w-full border-gray-300 rounded-md" wire:model="selectedProductID">
                     <option value="0">Wybierz usługę/produkt</option>
                     @foreach ( $records as $item)
@@ -10,17 +10,17 @@
                     @endforeach
                 </select>
             </div>
-            <div class="w-[20%] mr-4">
-                <label class="block mb-2 w-full" for="quant">{{__('Ilość*')}}</label>
+            <div class="md:w-[20%] md:mr-4  mb-4">
+                <label class="block mb-2 w-full" for="quant">{{__('Ilość')}}<span class="text-red-600"> (*)</label></label>
                 <input id="quant" type="text" 
                 class="block mt-1 w-full border-gray-300 rounded-md  mr-4 dark:text-black" 
                 name="name" wire:model="quant"
                 required />
             </div>
-            <div class="w-[20%]">
-                <label class="block mb-2 w-full" for="buttonAdd">{{__('Akcja')}}</label>
+            <div class="md:w-[20%]">
+                <label class="hidden md:block mb-2 w-full" for="buttonAdd">{{__('Akcja')}}</label>
                 <button id="buttonAdd" type="button" wire:click="addProductList"
-                class="block sm:inline text-sm md:text-base p-1 py-2 px-3 bg-sky-200  rounded-md">
+                class="w-full block sm:inline text-sm text-gray-50 md:text-base p-1 py-2 px-3 bg-gray-600 rounded-md">
                     Dodaj
                 </button>
             </div>
@@ -53,7 +53,7 @@
                 <div class="w-[20%]">
                     <label for="buttonDelete_{{ $index }}">{{__('Akcja')}}</label>
                     <button id="buttonDelete_{{ $index }}" type="button" 
-                    class="block  w-full sm:inline text-sm md:text-base mt-1 p-1 py-2 px-3 bg-red-200 rounded-md" 
+                    class="block w-full sm:inline text-sm text-white md:text-base mt-1 p-1 py-2 px-3 bg-red-600 rounded-md" 
                     wire:click="removeProduct({{ $index }})">Usuń</button>
                 </div>
             </div>
@@ -69,7 +69,7 @@
 
     <!--Value -->
     <div class="mb-4">
-        <label for="leadValue">{{__('Wartość zamówienia*')}}</label>
+        <label for="leadValue">{{__('Wartość zamówienia')}}<span class="text-red-600"> (*)</label></label>
         <input id="leadValue" 
         class="block mt-1 w-[50%] border-gray-300 rounded-md  mr-4 dark:text-black" 
         type="text" name="leadValue"

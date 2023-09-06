@@ -12,8 +12,8 @@
       </svg>
 </button>
 <button
-    class="hidden md:inline-block p-2 rounded-full bg-transparent 
-    hover:bg-gray-200 
+    class="hidden md:inline-block p-2 rounded-full 
+    bg-gray-200 
     dark:hover:bg-gray-800 
     "
     data-te-sidenav-toggle-ref

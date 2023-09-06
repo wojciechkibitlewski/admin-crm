@@ -14,7 +14,7 @@
     mx-4 
     ">
     <div
-      class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600">
+      class="pointer-events-auto relative flex w-full md:max-w-xl mx-auto flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600">
       <div
         class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
         <!--Modal title-->
@@ -46,7 +46,7 @@
 
       <!--Modal body-->
       <div class="relative p-4">
-        @include('leads.search-form')
+        @include('leads.includes.search-form')
       </div>
 
       

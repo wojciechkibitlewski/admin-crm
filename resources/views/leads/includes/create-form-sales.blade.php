@@ -1,6 +1,6 @@
 <div>
     <div class="w-full mb-4 ">
-            <label for="title" class="">{{__('Tytuł*')}}</label>
+            <label for="title" class="">{{__('Tytuł')}}<span class="text-red-600"> (*)</span></label>
             <input id="title" type="text" 
             class="block mt-2 w-full border-gray-300 rounded-md
             dark:text-black" 
@@ -37,13 +37,13 @@
             @enderror
     </div>
     <div class="w-full mb-4 ">
-            <label for="type_id" class="block mb-2 w-full">{{__('Stan zamówienia*')}}</label>
+            <label for="type_id" class="block mb-2 w-full">{{__('Stan zamówienia')}}<span class="text-red-600"> (*)</span></label>
             <select
             id="type_id" name="type_id" value="old('type_id')"
             class="w-full border-gray-300 rounded-md" 
             required 
             >   
-            <option value="0">Wybierz stan zamówienia</option> 
+            <option value="0">Wybierz stan zamówienia </option> 
 
             @foreach($types as $item)
                 <option value="{{$item->id}}" {{ old('type_id') == $item->id ? 'selected' : ''}}>{{$item->type}}</option> 
@@ -55,7 +55,7 @@
     </div>
     <div class="flex flex-row mb-4">
         <div class="w-[50%] mr-4">
-            <label for="executionDate" class="block mb-2 w-full">{{__('Data sesji*')}}</label>
+            <label for="executionDate" class="block mb-2 w-full">{{__('Data sesji')}}<span class="text-red-600"> (*)</span></label>
             <input id="title" type="date" 
             class="block mt-2 w-full border-gray-300 rounded-md dark:text-black" 
             name="executionDate" value="{{old('executionDate')}}" 
@@ -64,7 +64,10 @@
                 <div class="mt-2 p-2 rounded bg-red-400">{{ $message }}</div>
             @enderror               
         </div>
-        <div class="relative w-[50%] mr-4" id="time" data-te-timepicker-init >
+        <div class="relative w-[50%] mr-4" 
+        id="time"
+        data-te-format24="true"
+        >
             <label for="executionTime" class="block mb-2 w-full">Wybierz godzinę</label>
             <input type="text"
             class="peer block mt-1 w-full rounded-md bg-transparent 
@@ -74,7 +77,10 @@
             data-[te-input-state-active]:placeholder:opacity-100 
             motion-reduce:transition-none 
             dark:text-black dark:placeholder:text-black dark:peer-focus:text-black [&:not([data-te-input-placeholder-active])]:placeholder:opacity-100"
-            id="executionTime" name="executionTime" value="{{old('executionTime')}}"  />
+            id="executionTime" 
+            name="executionTime" 
+            value="{{old('executionTime')}}" 
+            data-te-toggle="timepicker"/>
             @error('executionTime')
                 <div class="mt-2 p-2 rounded bg-red-400">{{ $message }}</div>
             @enderror  
