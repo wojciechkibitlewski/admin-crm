@@ -12,7 +12,7 @@
                     role="tabpanel"
                     aria-labelledby="tabs-home-tab"
                     data-te-tab-active>
-                    <h3 class="font-bold mb-4">Nowe zamówienie</h3>
+                    <h3 class="font-bold mb-4">{{__('leads.new_leads')}}</h3>
 
                     @include('leads.includes.create-form-sales')
                 
@@ -22,9 +22,9 @@
                     id="tabs-profile"
                     role="tabpanel"
                     aria-labelledby="tabs-profile-tab">
-                    <h3 class="font-bold mb-4">Wybierz klienta</h3>
+                    <h3 class="font-bold mb-4">{{__('leads.add_client')}}</h3>
                     
-                    <livewire:search-client />
+                    <livewire:client.search-client />
                     
                 </div>
                 <div
@@ -32,8 +32,8 @@
                     id="tabs-messages"
                     role="tabpanel"
                     aria-labelledby="tabs-profile-tab">
-                    <h3 class="font-bold mb-4">Wybierz usługi/produkty</h3>
-                    <livewire:search-product />
+                    <h3 class="font-bold mb-4">{{__('leads.add_product')}}</h3>
+                    <livewire:product.search-product />
                 </div>
             </div>
             
@@ -42,7 +42,7 @@
             <!--Submit button-->
             <button type="submit"
             class="block w-full rounded-md bg-gray-600 py-4 font-medium text-white">
-                {{ __('Dodaj zamówienie ')}}
+                {{ __('leads.add_lead')}}
             </button> 
 
             @include('leads.includes.helps')

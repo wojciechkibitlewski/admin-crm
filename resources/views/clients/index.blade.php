@@ -1,27 +1,26 @@
 <x-app-layout>
-    <div class="p-4 sm:p-7">
-        
-        <x-a-header>
-            <x-a-link-add href="{{route('clients.create')}}" title="{{__('Dodaj nowego klienta')}}">
-                {{__('Dodaj nowego klienta')}}    
-            </x-a-link-add>
-            <x-a-title-header title="{{__('Klienci. Wszyscy')}}" />
-        </x-a-header>        
-
-        @if ($message = Session::get('success'))
-            <div class="bg-sky-100 rounded-xl p-4 dark:bg-sky-800 mb-4">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-
-        <div class="bg-white rounded-xl p-4 dark:bg-gray-800 ">
-            <div class="w-full overflow-x-auto font-light" id="clientTable">
-            @livewire('client-table')
-            </div>
-        
-
-            
+    <x-a-header style="z-index:1;">
+        <div></div>
+        <div class="flex items-center">
+            <x-a-title-header title="{{__('clients.clients')}}" />
         </div>
+    </x-a-header>    
+
+    <div class="relative mx-2 pb-10">
+
+        @include('includes.message')
+        <div class="p-4">
+            @livewire('client.client-table')
+        </div>
+        
+            <div class="relative z-[11] sticky bottom-[50px] ml-[70%] md:ml-[80%] lg:ml-[86%] xl:ml-[92%] w-20 h-20 p-2 rounded-full bg-amber-500 text-center text-white font-black">
+                <a href="{{route('clients.create')}}" title="{{__('clients.add_client')}}" class="">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-18 h-18">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+                </a>
+            </div>
+        
     </div>
-   
+    
 </x-app-layout>

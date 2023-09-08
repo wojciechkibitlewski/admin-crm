@@ -5,13 +5,13 @@
       <div
         class="-ml-[5px] mr-3 h-[9px] w-[9px] rounded-full bg-neutral-300 dark:bg-neutral-500"></div>
       <p class="text-sm text-neutral-500 dark:text-neutral-300">
-        KROK 1
+        {{__('leads.help_1')}}
       </p>
     </div>
     <div class="mb-6 ml-4 mt-2">
-      <h4 class="mb-1.5 font-semibold">Uzupełnij dane zamówienia</h4>
+      <h4 class="mb-1.5 font-semibold"> {{__('leads.help_h_1')}}</h4>
       <p class="mb-3 text-neutral-500 dark:text-neutral-300">
-        Pola: Tytuł, Stan zamówienia oraz Data sesji są obowiązkowe
+        {{__('leads.help_p_1')}}
       </p>
     </div>
   </li>
@@ -22,14 +22,14 @@
       <div
         class="-ml-[5px] mr-3 h-[9px] w-[9px] rounded-full bg-neutral-300 dark:bg-neutral-500"></div>
       <p class="text-sm text-neutral-500 dark:text-neutral-300">
-        KROK 2
+        {{__('leads.help_2')}}  
       </p>
     </div>
     <div class="mb-6 ml-4 mt-2">
-      <h4 class="mb-1.5 font-semibold">Wybierz klienta</h4>
+      <h4 class="mb-1.5 font-semibold">{{__('leads.help_h_2')}}</h4>
       <p class="mb-3 text-neutral-500 dark:text-neutral-300">
-        Jeśli masz już zapisanego klienta w swojej bazie klientów, wpisz w wyszukiwarce imię i nazwisko - dane uzupełnią się automatycznie.<br/>
-        Jeśli nie masz tego klienta, wpisz dane w formularzu. Imię i nazwisko są obowiązkowe.
+        {{__('leads.help_p_2')}}
+        
       </p>
     </div>
   </li>
@@ -40,14 +40,13 @@
       <div
         class="-ml-[5px] mr-3 h-[9px] w-[9px] rounded-full bg-neutral-300 dark:bg-neutral-500"></div>
       <p class="text-sm text-neutral-500 dark:text-neutral-300">
-        KROK 3
+        {{__('leads.help_3')}}
       </p>
     </div>
     <div class="ml-4 mt-2 pb-5">
-      <h4 class="mb-1.5 font-semibold">Dodaj produkty</h4>
+      <h4 class="mb-1.5 font-semibold">{{__('leads.help_h_3')}} </h4>
       <p class="mb-3 text-neutral-500 dark:text-neutral-300">
-        Wybierz produkty z listy produktów.<br/>
-        Uwaga: w przypadku wystąpienia błędu sprawdź, czy lista produktów nie jest pusta.
+        {{__('leads.help_p_3')}}        
       </p>
     </div>
   </li>

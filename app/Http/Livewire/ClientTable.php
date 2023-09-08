@@ -49,14 +49,14 @@ class ClientTable extends DataTableComponent
     {
         return [
 
-            Column::make('id')
+            Column::make('ID', 'id')
                 ->hideIf(Auth::user()->id !== 1 )
                 ->excludeFromColumnSelect(),
 
-            Column::make('Name')
+            Column::make(__('name'))
                 ->searchable()
                 ->sortable(),
-            Column::make('Email')
+            Column::make('email')
                 ->searchable()
                 ->sortable()
                 ->collapseOnMobile()
@@ -83,14 +83,14 @@ class ClientTable extends DataTableComponent
                 ->collapseOnMobile()
                 ->buttons([
                     LinkColumn::make('Show')
-                        ->title(fn($row) => 'Show')
+                        ->title(fn($row) => __('clients.btn_show'))
                         ->location(fn($row) => route('clients.show', $row))
                         ->attributes(fn($row) => [
                             'class' => 'bg-sky-200 p-1 px-2 border border-white rounded-md dark:bg-sky-900',
                             'alt' => $row->name . ' Avatar',
                         ]),
                     LinkColumn::make('Edit')
-                        ->title(fn($row) => 'Edit')
+                        ->title(fn($row) => __('clients.btn_edit'))
                         ->location(fn($row) => route('clients.edit', $row))
                         ->attributes(fn($row) => [
                             'class' => 'bg-purple-200 p-1 px-2 border border-white rounded-md dark:bg-purple-900',
@@ -98,13 +98,7 @@ class ClientTable extends DataTableComponent
                         ]),
                     
                 ]),  
-            
-                
-            // Column::make('Actions')
-            //     ->label(
-            //         fn($row, Column $column) => view('clients.table-actions')->withRow($row)
-            //     )
-            //     ->unclickable()            
+                    
         ];
     }
 

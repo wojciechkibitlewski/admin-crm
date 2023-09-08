@@ -42,7 +42,7 @@ class LeadController extends Controller
         $types = Salestype::where('user_id',Auth::user()->id)->orderBy('order')->get();
         
         //dd( $require, $type_id, $source_id);
-        return view('leads.index',
+        return view('leads.search',
             [
                 'leads' => $leads,
                 'sources' => $sources,
@@ -122,7 +122,7 @@ class LeadController extends Controller
         $types = Salestype::where('user_id',Auth::user()->id)->orderBy('order')->get();
         
         //dd( $require, $type_id, $source_id);
-        return view('leads.index',
+        return view('leads.search',
             [
                 'leads' => $leads,
                 'sources' => $sources,
@@ -134,8 +134,7 @@ class LeadController extends Controller
                 'value' => $value,
             ])
             ->with('i', (request()->input('page', 1) - 1) * 20);
-    }
-    
+    }    
     
     public function index():View
     {
@@ -260,16 +259,16 @@ class LeadController extends Controller
             
             }
             return redirect()
-                    ->route('leads.show', $lead->id)
+                    ->route('leads.show', $lead->prefix)
                     ->with('success','Zamówienie created successfully.');
             
         }
         
     }
 
-    public function show(Request $request, string $id)
+    public function show(Request $request, string $prefix)
     {
-        $lead = Lead::where('user_id',Auth::user()->id)->where('id', $id)->first();
+        $lead = Lead::where('user_id',Auth::user()->id)->where('prefix', $prefix)->first();
         $client = Client::where('user_id',Auth::user()->id)->where('id', $lead->client_id)->first();
         $leadProduct = LeadProduct::where('user_id',Auth::user()->id)->where('lead_id', $lead->id)->orderBy('product_id')->get();
         $sources = Salessource::where('user_id',Auth::user()->id)->orderBy('source')->get();
@@ -303,10 +302,8 @@ class LeadController extends Controller
 
             $lead->save();
         }
-        return redirect()->route('leads.show', $request['lead_id']);
-    }
-
-    
+        return redirect()->route('leads.show', $lead->prefix);
+    }    
 
     public function update(Request $req)
     {
@@ -353,17 +350,10 @@ class LeadController extends Controller
             }
         
         }
-        
-
         return redirect()
-                    ->route('leads.show', $req->lead_id)
+                    ->route('leads.show', $lead->prefix)
                     ->with('success','Zamówienie updated successfully.');
-
-        
-
     }
-
-
 
     public function productDestroy(Request $request)
     {
@@ -387,7 +377,7 @@ class LeadController extends Controller
         $activity->save();
 
         return redirect()
-                ->route('leads.show',$request->lead_id)
+                ->route('leads.show',$lead->prefix)
                 ->with('success','Lead deleted successfully.');
 
     }

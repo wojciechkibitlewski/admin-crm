@@ -5,6 +5,8 @@ return [
     'clients_current_month' =>"This month's clients",
     'clients_all' => 'List of clients',
     'clients' => 'Clients',
+    'add_client' => 'Add client',
+
     'add_product' => 'Add service/product',
     'products' => 'Services / products',
     'products_all' => 'List of services/products',
@@ -23,5 +25,7 @@ return [
     'message' => 'Message',
     'logout' => 'Log Out',
     'reports'=>'Analyses and reports',
+    'todo' => 'List of tasks',
+
 
 ];

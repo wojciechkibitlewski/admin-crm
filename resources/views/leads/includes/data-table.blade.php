@@ -1,15 +1,17 @@
 <div class="bg-white rounded-xl p-4 dark:bg-gray-800 ">
+    
     <div class="w-full overflow-x-auto mb-[20px]" id="leadsTable">
     <table class="text-left text-sm font-normal mb-4 w-full">
-        <thead class="border-b text-xs bg-gray-100 dark:border-neutral-500">
+        <thead class="border-b text-xs text-gray-400 bg-gray-100 
+        dark:bg-gray-600 dark:text-gray-100 dark:border-neutral-500">
             <tr>
-                <th scope="col" class="px-2 py-2 font-light text-gray-400">Data</th>
-                <th scope="col" class="px-2 py-2 font-light text-gray-400">Co?</th>
-                <th scope="col" class="px-2 py-2 font-light text-gray-400">Zamawiający</th>
-                <th scope="col" class="px-2 py-2 font-light text-gray-400">Cena</th>
-                <th scope="col" class="px-2 py-2 font-light text-gray-400">Zaliczka</th>
-                <th scope="col" class="px-2 py-2 font-light text-gray-400">Stan realizacji</th>
-                <th scope="col" class="px-2 py-2 font-light text-gray-400">Akcja</th>
+                <th scope="col" class="px-2 py-2 font-light">{{__('leads.table_date')}}</th>
+                <th scope="col" class="px-2 py-2 font-light">{{__('leads.table_title')}}</th>
+                <th scope="col" class="px-2 py-2 font-light">{{__('leads.table_client')}}</th>
+                <th scope="col" class="px-2 py-2 font-light">{{__('leads.table_price')}}</th>
+                <th scope="col" class="px-2 py-2 font-light ">{{__('leads.table_adv')}}</th>
+                <th scope="col" class="px-2 py-2 font-light ">{{__('leads.table_state')}}</th>
+                <th scope="col" class="px-2 py-2 font-light">{{__('leads.table_action')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -27,22 +29,9 @@
                         <div class="p-1">
                             <a 
                             class="bg-purple-200 p-1 px-2 border border-white rounded-md dark:bg-purple-900" 
-                            href="{{ route('leads.show',$item->id) }}">Show</a>
+                            href="{{ route('leads.show',$item->prefix) }}">{{__('leads.show')}}</a>
                         </div>
-                        {{--                         
-                        <div class="">
-                            <button
-                                type="button"
-                                class="bg-red-200 p-1 px-2 border border-white rounded-md dark:bg-red-900"  
-                                id="deleteRowButton_{{ $item->id }}"
-                                data-te-toggle="modal"
-                                data-te-target="#deleteRowModal"
-                                data-element="{{ $item->id }}" 
-                                data-te-ripple-init
-                                data-te-ripple-color="light">
-                                Delete
-                            </button>
-                             --}}
+                        
                         </div>
                     </td>
 

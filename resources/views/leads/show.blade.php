@@ -11,7 +11,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
             </svg>
                 <span class="hidden md:inline-block  md:ml-2">
-                    {{__('Szukaj zamówień')}}
+                    {{__('leads.search_leads')}}
                 </span>
         </x-a-header-button-search>
         <div class="flex items-center">
@@ -23,51 +23,97 @@
                 </svg>
             </a>
             
-            <x-a-title-header title="{{__('Zamówienia')}}" />
+            <x-a-title-header title="{{__('leads.leads')}}" />
         </div>
-    </x-a-header>    
-
-    <div class="relative pb-10">
-        <div class="p-4 border-b border-gray-200">
+    </x-a-header> 
+    <div class="p-4 ">
+        @include('includes.message')
+    </div>
+    <div class="relative pb-10 ">
+        <div class="p-4 border-b border-gray-200 dark:border-gray-600">
             <h3 class="font-medium text-2xl">{{$lead->title}}</h3>
         </div>
         
-        <div class="flex flex-row border-b border-gray-200">
-            <div class="md:basis-1/2 md:border-r md:border-gray-200 p-4">
-                <p class="uppercase text-xs text-gray-400">{{__('Data sesji')}}</p>
-                <div class="flex flex-row w-full justify-between items-center	">
-                    <p class="text-lg md:text-2xl">{{$lead->executionDate}}, godz: {{$lead->executionTime}}</p>
-                    <span>
-                        <button 
-                        type="button" 
-                        class="text-sm bg-gray-600 text-gray-100 rounded px-4 py-2"
-                        data-te-toggle="modal"
-                        data-te-target="#addDateModal"
-                        > 
-                        Update 
-                        </button> 
-                    </span>
+        <div class="md:flex md:flex-row border-b border-gray-200 dark:border-gray-600 w-full 2xl:w-[90%]">
+            <div class="w-full md:basis-1/2 md:border-r md:border-gray-200 dark:border-gray-600">
+                <!-- date and time  -->
+                <div class="w-full border-b border-gray-200 dark:border-gray-600 p-4">
+                    @include('leads.includes.show-date')
                 </div>
-
-
+                <!-- state  -->
+                <div class="w-full border-b border-gray-200 dark:border-gray-600 p-4">
+                    @include('leads.includes.show-state')
+                </div>
+                <!-- source  -->
+                <div class="w-full border-b border-gray-200 dark:border-gray-600 p-4">
+                    @include('leads.includes.show-source')
+                </div> 
+                <!-- client  -->
+                <div class="w-full border-b border-gray-200 dark:border-gray-600 p-4">  
+                    @include('leads.includes.show-client')
+                </div> 
+                <!-- date  -->
+                <div class="w-full border-b border-gray-200 dark:border-gray-600 p-4">  
+                    @include('leads.includes.show-created')
+                </div> 
+                <div class="w-full border-b border-gray-200 dark:border-gray-600 p-4">  
+                    @include('leads.includes.show-updated')
+                </div> 
             </div>
-            <div class="md:basis-1/2">
+            <div class="md:basis-1/2 md:border-r md:border-gray-200 dark:border-gray-600">
+                <!-- lead value  -->
+                <div class="w-full border-b border-gray-200 dark:border-gray-600 p-4">
+                    @include('leads.includes.show-leadvalue')
+                </div> 
+                <!-- products  -->
+                <div class="w-full border-b border-gray-200 dark:border-gray-600 p-4">
+                    @include('leads.includes.show-products')
+                </div>
+                <!-- note  -->
+                <div class="w-full border-b border-gray-200 dark:border-gray-600 p-4">
+                    @include('leads.includes.show-note')
+                </div>
+                <!-- delete leads  -->
+                <div class="w-full border-b border-gray-200 dark:border-gray-600 p-4 text-right">
+                    <div class="flex flex-row w-full justify-between items-center	">
+                        <p class="text-2xl"></p>
+                        <span>
+                            <button 
+                            type="button" 
+                            class="text-sm bg-red-600 text-white rounded px-4 py-2"
+                            data-te-toggle="modal"
+                            data-te-target="#deleteLeadsModal"
+                            > {{__('leads.delete_lead')}}  </button>  
+                        </span>
+                    </div> 
+                
+                </div>
             </div>
         </div>
-        
-
-        @include('leads.includes.message')
-
-        
-        {{-- add leads button  --}}
-        <a href="{{route('leads.create')}}" title="Dodaj nowe zamówienie" class="">
-            <div class="relative z-[11] sticky bottom-[50px] ml-[70%] md:ml-[80%] lg:ml-[86%] xl:ml-[92%] w-20 h-20 p-2 rounded-full bg-amber-500 text-center text-white font-black">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-18 h-18">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                </svg>
-            </div>
-        </a>
 
     </div>
     
 </x-app-layout>
+@include('leads.modals.modal-date')
+@include('leads.modals.modal-state')
+@include('leads.modals.modal-advance')
+@include('leads.modals.modal-product')
+@include('leads.modals.modal-remove-product')
+@include('leads.modals.modal-note')
+@include('leads.modals.modal-delete-leads')
+
+<script>
+    /// delete row
+    const leadsTable = document.getElementById("productsTable");
+    let deleteRowButton = leadsTable.getElementsByTagName("button");
+    const inputID = document.getElementById("deleteRowModalId");
+
+    const buttonPressed = e => {
+    //console.log(e.target.getAttribute('data-element'));
+        inputID.setAttribute("value", e.target.getAttribute('data-element'));
+    }
+
+    for (let button of deleteRowButton) {
+    button.addEventListener("click", buttonPressed);
+    }
+</script>

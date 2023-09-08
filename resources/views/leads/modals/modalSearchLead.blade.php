@@ -21,7 +21,7 @@
         <h5
           class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
           id="exampleModalCenterTitle">
-          Wyszukiwanie zamówień
+          {{__('leads.search_leads')}}
         </h5>
         <!--Close button-->
         <button

@@ -8,5 +8,5 @@ dark:text-white dark:hover:bg-gray-700
 "
 href="{{route('clients.create')}}" title="Dodaj Klienta"
 data-te-sidenav-link-ref>
-Dodaj Klienta
+{{__('sidenav.add_client')}}
 </a>

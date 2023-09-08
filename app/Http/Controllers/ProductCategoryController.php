@@ -18,8 +18,8 @@ class ProductCategoryController extends Controller
     //php
     public function index()
     {
-        $productcategory = ProductCategory::where('user_id',Auth::user()->id)->orderBy('id','asc')->paginate(5);
-        return view('settings.productcategory.index',compact('productcategory'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $productcategory = ProductCategory::where('user_id',Auth::user()->id)->orderBy('id','asc')->paginate(10);
+        return view('settings.productcategory.index',compact('productcategory'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     public function create()

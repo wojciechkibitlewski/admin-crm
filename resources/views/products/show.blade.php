@@ -1,60 +1,24 @@
 <x-app-layout>
-    <div class="p-4 sm:p-7">
-        <x-a-header>
-            <x-a-link-add href="{{route('products.edit',$product->id )}}" title="{{__('Edytuj produkt')}}">
-                {{__('Edytuj produkt')}}    
-            </x-a-link-add>
-            <x-a-title-header title="{{__('Produkty/usługi. Szczegóły produktu')}}" />
-        </x-a-header>
-    
-        @if ($message = Session::get('success'))
-            <div class="bg-sky-100 rounded-xl p-4 dark:bg-sky-800 mb-4">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-
-        <div class="md:flex md:flex-row gap-4 mt-4">
-            
-            <div class="md:basis-2/3 bg-white rounded-xl p-4 dark:bg-gray-800 mb-6">
-                <div class="mt-4">
-                    <p>Nazwa</p>
-                        <p class="block text-xl font-medium">{{$product->name}}
-                    </p>
-                </div>
-                
-                <div class="mt-4">
-                    <p>SKU</p>
-                        <p class="block text-xl font-medium">{{$product->sku}}
-                    </p>
-                </div>
-                <div class="mt-4">
-                    <p>Kategoria</p>
-                        <p class="block text-xl font-medium">
-                            {{ Helper::getCategoryName($product->category_id) }}
-                    </p>
-                </div>
-                <div class="mt-4">
-                    <p>Cena</p>
-                        <p class="block text-xl font-medium">{{$product->price}} zł
-                    </p>
-                </div>
-                <div class="mt-4">
-                    <p>Opis</p>
-                    
-                        <p class="block font-normal">
-                            @php 
-                            print_r(nl2br($product->desc));
-                            @endphp
-                    </p>
-                </div>
-            </div>
-
-            <div class="md:basis-1/3 bg-gray-100 rounded-xl p-4 dark:bg-gray-800 ">
-                
-            </div>
+    <x-a-header style="z-index:1;">
+        <div></div>
+        <div class="flex items-center">
+            <a href="{{ route('products.index') }}" title="Back" class="inline mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
+                class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                </svg>
+            </a>
+            <x-a-title-header title="{{__('products.products')}}" />
         </div>
+    </x-a-header>    
 
+    <div class="relative mx-2 pb-10">
 
+        @include('includes.message')
+        <div class="">
+            @include('products.includes.show')
+        </div>
+        
     </div>
-   
+    
 </x-app-layout>

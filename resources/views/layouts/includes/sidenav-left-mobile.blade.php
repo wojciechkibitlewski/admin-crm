@@ -37,9 +37,7 @@
                     <li class="relative">
                         @include('layouts.nav.link-clients-index')
                     </li>
-                    <li class="relative">
-                        @include('layouts.nav.link-clients-currentMonth')
-                    </li>
+                    
                     <li class="relative">
                         @include('layouts.nav.link-clients-create')
                     </li>
@@ -62,9 +60,7 @@
                 @include('layouts.nav.link-settings')
                 <ul class="!visible relative m-0 hidden list-none p-0 data-[te-collapse-show]:block "
                 data-te-sidenav-collapse-ref>
-                    <li class="relative">
-                        @include('layouts.nav.link-settings-index')
-                    </li>
+                    
                     <li class="relative">
                         @include('layouts.nav.link-settings-sources')
                     </li>
@@ -78,6 +74,9 @@
             </li>
             <li class="relative mb-2" >
                 @include('layouts.nav.link-reports')         
+            </li>
+            <li class="relative mb-2" >
+                @include('layouts.nav.link-todo')         
             </li>
         </ul>    
 </nav>

@@ -18,4 +18,9 @@ class Client extends Model
         'firm',
         'user_id',
     ];
+
+    public function scopeSearch($query, $value)
+    {
+        $query -> where('name','like',"%{$value}%")->orWhere('email','like',"%{$value}%")->orWhere('phone','like',"%{$value}%");
+    }
 }

@@ -1,5 +1,7 @@
+<!-- mobile  -->
 <button
     class="md:hidden p-2 rounded-full bg-transparent 
+    
     "
     data-te-sidenav-toggle-ref
     data-te-target="#sidenav-1"
@@ -11,9 +13,12 @@
         <path fill-rule="evenodd" d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
       </svg>
 </button>
+<!-- desktop  -->
+
 <button
     class="hidden md:inline-block p-2 rounded-full 
     bg-gray-200 
+    dark:bg-gray-600
     dark:hover:bg-gray-800 
     "
     data-te-sidenav-toggle-ref

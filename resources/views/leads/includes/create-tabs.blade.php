@@ -16,7 +16,7 @@ data-te-nav-ref>
         role="tab"
         aria-controls="tabs-home"
         aria-selected="true"
-        >Zamówienie</a
+        >{{__('leads.leads')}}</a
         >
     </li>
     <li role="presentation">
@@ -28,7 +28,7 @@ data-te-nav-ref>
         role="tab"
         aria-controls="tabs-profile"
         aria-selected="false"
-        >Wybierz klienta</a
+        >{{__('leads.add_client')}}</a
         >
     </li>
     <li role="presentation">
@@ -40,7 +40,7 @@ data-te-nav-ref>
         role="tab"
         aria-controls="tabs-messages"
         aria-selected="false"
-        >Dodaj produkty</a
+        >{{__('leads.add_product_tab')}}</a
         >
     </li>
 

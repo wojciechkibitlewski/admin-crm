@@ -5,6 +5,8 @@ return [
     'clients_current_month' =>"Klienci z bieżącego miesiąca",
     'clients_all' => 'Lista klientów',
     'clients' => 'Klienci',
+    'add_client' => 'Dodaj klienta',
+
     'add_product' => 'Dodaj usługę / produkt',
     'products' => 'Usługi / produkty',
     'products_all' => 'Lista usług / produktów',
@@ -23,5 +25,5 @@ return [
     'message' => 'Wiadomości',
     'logout' => 'Wyloguj się',
     'reports'=>'Analizy i raporty',
-
+    'todo' => 'Lista zadań',
 ];

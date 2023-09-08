@@ -23,4 +23,9 @@ class Lead extends Model
         'user_id',
         'client_id'
     ];
+
+    public function scopeSearch($query, $value)
+    {
+        $query -> where('title','like',"%{$value}%");
+    }
 }

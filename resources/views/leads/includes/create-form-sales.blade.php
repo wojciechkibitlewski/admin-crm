@@ -1,6 +1,6 @@
 <div>
     <div class="w-full mb-4 ">
-            <label for="title" class="">{{__('Tytuł')}}<span class="text-red-600"> (*)</span></label>
+            <label for="title" class="">{{__('leads.title')}}<span class="text-red-600"> (*)</span></label>
             <input id="title" type="text" 
             class="block mt-2 w-full border-gray-300 rounded-md
             dark:text-black" 
@@ -11,7 +11,7 @@
             @enderror
     </div>
     <div class="w-full mb-4 ">
-            <label for="note" class="">{{__('Notatka')}}</label>
+            <label for="note" class="">{{__('leads.note')}}</label>
             <textarea id="note" 
             class="block mt-2 w-full border-gray-300 rounded-md dark:text-black" 
             name="note">{{ old('note') }}</textarea>
@@ -20,13 +20,13 @@
             @enderror
     </div>
     <div class="w-full mb-4 ">
-            <label for="source_id" class="block mb-2 w-full">{{__('Wybierz źródło')}}</label>
+            <label for="source_id" class="block mb-2 w-full">{{__('leads.source')}}</label>
             <select
             id="source_id" name="source_id" 
             class="w-full border-gray-300 rounded-md" 
             required 
             >
-            <option value="0">Wybierz źródło</option> 
+            <option value="0">{{__('leads.source')}}</option> 
 
             @foreach($sources as $item)
                 <option value="{{$item->id}}" {{ old('source_id') == $item->id ? 'selected' : ''}}>{{$item->source}}</option> 
@@ -37,13 +37,13 @@
             @enderror
     </div>
     <div class="w-full mb-4 ">
-            <label for="type_id" class="block mb-2 w-full">{{__('Stan zamówienia')}}<span class="text-red-600"> (*)</span></label>
+            <label for="type_id" class="block mb-2 w-full">{{__('leads.state')}}<span class="text-red-600"> (*)</span></label>
             <select
             id="type_id" name="type_id" value="old('type_id')"
             class="w-full border-gray-300 rounded-md" 
             required 
             >   
-            <option value="0">Wybierz stan zamówienia </option> 
+            <option value="0">{{__('leads.state')}}</option> 
 
             @foreach($types as $item)
                 <option value="{{$item->id}}" {{ old('type_id') == $item->id ? 'selected' : ''}}>{{$item->type}}</option> 
@@ -55,7 +55,7 @@
     </div>
     <div class="flex flex-row mb-4">
         <div class="w-[50%] mr-4">
-            <label for="executionDate" class="block mb-2 w-full">{{__('Data sesji')}}<span class="text-red-600"> (*)</span></label>
+            <label for="executionDate" class="block mb-2 w-full">{{__('leads.date')}}<span class="text-red-600"> (*)</span></label>
             <input id="title" type="date" 
             class="block mt-2 w-full border-gray-300 rounded-md dark:text-black" 
             name="executionDate" value="{{old('executionDate')}}" 
@@ -68,7 +68,7 @@
         id="time"
         data-te-format24="true"
         >
-            <label for="executionTime" class="block mb-2 w-full">Wybierz godzinę</label>
+            <label for="executionTime" class="block mb-2 w-full">{{__('leads.time')}}</label>
             <input type="text"
             class="peer block mt-1 w-full rounded-md bg-transparent 
             pt-2 bg-white border-gray-300

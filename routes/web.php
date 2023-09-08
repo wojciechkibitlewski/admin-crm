@@ -10,6 +10,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\ReportsController;
+use App\Http\Controllers\TodoController;
 
 
 Route::group(['prefix' => LaravelLocalization::setLocale()], function()
@@ -30,6 +31,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         
         // reports
         Route::get('reports', [ReportsController::class, 'index'])->name('reports');
+        // todo
+        Route::get('todo', [TodoController::class, 'index'])->name('todo');
 
         // settings
         Route::get('/settings', function() { 
@@ -81,7 +84,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         Route::get('clients/show/{id}', [ClientController::class, 'show'])->name('clients.show');
         Route::get('clients/edit/{id}', [ClientController::class, 'edit'])->name('clients.edit');
         Route::patch('clients/update', [ClientController::class, 'update'])->name('clients.update');
-        Route::delete('clients/destroy', [ClientController::class, 'destroy'])->name('clients.destroy');
+        Route::patch('clients/destroy', [ClientController::class, 'destroy'])->name('clients.destroy');
 
         Route::get('clients/currentMonth', [ClientController::class, 'currentMonth'])->name('clients.currentMonth');
         Route::post('clients/search', [ClientController::class, 'search'])->name('clients.search');
@@ -91,8 +94,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
         Route::get('leads/create', [LeadController::class, 'create'])->name('leads.create');
         Route::post('leads/store', [LeadController::class, 'store'])->name('leads.store');
-        Route::get('leads/show/{id}', [LeadController::class, 'show'])->name('leads.show');
-        Route::get('leads/edit/{id}', [LeadController::class, 'edit'])->name('leads.edit');
+        Route::get('leads/show/{prefix}', [LeadController::class, 'show'])->name('leads.show');
         Route::post('leads/addproducts', [LeadController::class, 'addProducts'])->name('leads.addProducts');
         Route::patch('leads/update', [LeadController::class, 'update'])->name('leads.update');
         Route::patch('leads/productUpdate', [LeadController::class, 'productUpdate'])->name('leads.productUpdate');

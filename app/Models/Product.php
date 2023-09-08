@@ -18,4 +18,9 @@ class Product extends Model
         'category_id',
         'user_id',
     ];
+
+    public function scopeSearch($query, $value)
+    {
+        $query -> where('name','like',"%{$value}%");
+    }
 }

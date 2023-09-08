@@ -9,13 +9,14 @@ use Illuminate\View\View;
 
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\LeadProduct;
 use App\Models\Activity;
 
 class ProductController extends Controller
 {
     public function index():View
     {
-        $products = Product::where('user_id',Auth::user()->id)->orderBy('created_at')->paginate(10);
+        $products = Product::where('user_id',Auth::user()->id)->orderBy('name')->paginate(10);
         return view('products.index',compact('products'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
@@ -72,7 +73,21 @@ class ProductController extends Controller
     public function show(Request $request, string $id)
     {
         $product = Product::where('user_id',Auth::user()->id)->where('id',$id)->first();
-        return view('products.show',compact('product'));
+        //$leads = Lead::where('client_id', $id)->get();
+        //$leadsValue = Lead::where('client_id', $id)->sum(DB::raw('leadValue'));
+        //$advanceValue = Lead::where('client_id', $id)->sum(DB::raw('advanceValue'));
+        $productLeadsValue = LeadProduct::where('user_id',Auth::user()->id)->where('product_id', $id)
+            ->sum('product_price'); // Sumowanie cen produktów dla danego produktu
+
+        $productLeadsCount = LeadProduct::where('user_id',Auth::user()->id)->where('product_id', $id)
+            ->count(); // Ilość sprzedanych produktów danego produktu
+
+        return view('products.show',[
+            'product' => $product,
+            'productLeadsValue' => $productLeadsValue,
+            'productLeadsCount' => $productLeadsCount
+
+        ]);
     }
 
     public function edit(Request $request, string $id)
