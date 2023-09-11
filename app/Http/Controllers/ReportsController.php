@@ -21,26 +21,32 @@ use App\Models\Chart;
 
 class ReportsController extends Controller
 {
-    
+    public function sales():View
+    {
+        
+        return view('reports.sales');
+    }
 
     public function index():View
     {
         $monthNames = [
-            1 => 'January',
-            2 => 'February',
-            3 => 'March',
-            4 => 'April',
-            5 => 'May',
-            6 => 'June',
-            7 => 'July',
-            8 => 'August',
-            9 => 'September',
-            10 => 'October',
-            11 => 'November',
-            12 => 'December',
+            0 => 'January',
+            1 => 'February',
+            2 => 'March',
+            3 => 'April',
+            4 => 'May',
+            5 => 'June',
+            6 => 'July',
+            7 => 'August',
+            8 => 'September',
+            9 => 'October',
+            10 => 'November',
+            11 => 'December',
         ];
         // Pobieramy aktualny rok
         $currentYear = Carbon::now()->year;
+
+        $zeroValues = array_fill(1, 12, 0);
 
         $salesThisYear = DB::table('leads')
         ->select(DB::raw('SUM(leadValue) as total_leadValue'), DB::raw('MONTH(executionDate) as month'))
@@ -50,24 +56,36 @@ class ReportsController extends Controller
         ->orderBy(DB::raw('MONTH(executionDate)'))
         ->get();
         
-        for ($i=0; $i<=count($salesThisYear); $i++) {
+        for ($i=0; $i<=count($monthNames); $i++) {
             $colours[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
         }
         
+        $results = $zeroValues;
+
+
         $labels = [];
         foreach ($salesThisYear as $sale) {
             $month = $sale->month;
-            $labels[] = $monthNames[$month];
+            $results[$month] = $sale->total_leadValue;
         }
+        
 
         //$labels = $salesThisYear->pluck('month')->toArray();
-        $dataset = $salesThisYear->pluck('total_leadValue')->toArray();
+        //$dataset = $salesThisYear->pluck('total_leadValue')->toArray();
+        $labels = $monthNames; // Możesz użyć nazw miesięcy jako etykiet
+        $dataset = array_values($results); // Wykorzystaj wartości z tablicy wyników
+        //dd($dataset, $labels, $colours);
 
         $chartData = [
             'labels' => json_encode($labels),
             'dataset' => json_encode($dataset),
-            'colours' => json_encode($colours), // Zakładając, że masz już utworzoną tablicę kolorów
+            'colours' => json_encode($colours),
         ];
+        // $chartData = [
+        //     'labels' => json_encode($labels),
+        //     'dataset' => json_encode($dataset),
+        //     'colours' => json_encode($colours), // Zakładając, że masz już utworzoną tablicę kolorów
+        // ];
 
         //////////////////////////////////////
         $clientsThisYear = DB::table('clients')
@@ -124,6 +142,12 @@ class ReportsController extends Controller
         ];
 
         //dd($chartData);
-        return view('reports.index',compact('currentYear','chartData','chartDataClient','chartDataProduct' ));
+        return view('reports.index',[
+            'currentYear' => $currentYear,
+            'chartData' => $chartData,
+            'chartDataClient' => $chartDataClient,
+            'chartDataProduct' => $chartDataProduct,
+        ]);
     }
 }
+

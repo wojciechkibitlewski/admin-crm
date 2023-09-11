@@ -30,6 +30,7 @@
                             <a 
                             class="bg-purple-200 p-1 px-2 border border-white rounded-md dark:bg-purple-900" 
                             href="{{ route('leads.show',$item->prefix) }}">{{__('leads.show')}}</a>
+                            
                         </div>
                         
                         </div>

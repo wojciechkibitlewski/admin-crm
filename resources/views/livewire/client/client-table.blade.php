@@ -8,14 +8,14 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                 </svg>
             </div>
-            <input type="text" placeholder="Wyszukaj..."
+            <input type="text" placeholder="{{__('products.form_search')}}."
             class="block mt-2 w-full border-gray-300 border-l-0 rounded-r-md dark:bg-gray-300 dark:text-black" 
             id="search"
             wire:model.live.debounce.300ms="search" 
             />
         </div>
         <div class="flex flex-row items-center">
-            <div class="hidden md:inline-block mr-2 mt-2 ">Wyników na stronie</div> 
+            <div class="hidden md:inline-block mr-2 mt-2 ">{{__('products.form_perpage')}}</div> 
             <select
             wire:model.live="perPage" 
             id="per_page" name="per_page" 

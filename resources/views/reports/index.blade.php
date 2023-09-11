@@ -1,58 +1,25 @@
 <x-app-layout>
-    <div class="p-4 sm:p-7">
+    <x-a-header style="z-index:1;">
+        <div></div>
+        <div class="flex items-center">
+            <x-a-title-header title="{{__('reports.raports')}}" />
+        </div>
+    </x-a-header>    
+
+    <div class="relative pb-10">
+
+        @include('includes.message')
+        <div>
+            @include('reports.includes.sales-index')
+            @include('reports.includes.topclients-index')
+            @include('reports.includes.topproducts-index')
+
+        </div>
         
-        <x-a-header>
-            <div></div>
-            <x-a-title-header title="{{__('Analyses and reports')}}" />
-        </x-a-header>        
-
-        @if ($message = Session::get('success'))
-            <div class="bg-sky-100 rounded-xl p-4 dark:bg-sky-800 mb-4">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-        @if ($errors->any())
-            <div class="bg-red-100 rounded-xl p-4 dark:bg-red-800 mb-4">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <div class="bg-white rounded-xl p-4 dark:bg-gray-300 mb-8">
-            <x-a-header>
-                <x-a-link-add href="#" title="{{__('Więcej raportów nt sprzedaży')}}">
-                    {{__('Więcej raportów nt. sprzedaży')}}    
-                </x-a-link-add>
-                <h2 class="text-lg dark:text-black">Sprzedaż łączna z podziałem na miesiące w {{$currentYear}}</h2>
-            </x-a-header>            
-            <canvas class="w-full overflow-x-auto font-light" id="userChart"></canvas>
-        </div>
-
-        <div class="bg-white rounded-xl p-4 dark:bg-gray-300  mb-8">
-            <x-a-header>
-                <x-a-link-add href="#" title="{{__('Więcej raportów nt klientów')}}">
-                    {{__('Więcej raportów nt. klientów')}}    
-                </x-a-link-add>
-                <h2 class="text-lg dark:text-black">Top 10. Najlepsi klienci w {{$currentYear}}</h2>
-            </x-a-header>            
-            <canvas class="w-full overflow-x-auto font-light" id="clientsChart"></canvas>
-        </div>
-
-        <div class="bg-white rounded-xl p-4 dark:bg-gray-300 ">
-            <x-a-header>
-                <x-a-link-add href="#" title="{{__('Więcej raportów nt klientów')}}">
-                    {{__('Więcej raportów nt. produktów')}}    
-                </x-a-link-add>
-                <h2 class="text-lg dark:text-black">TOP 10. Najlepiej sprzedające się produkty w {{$currentYear}}</h2>
-            </x-a-header>            
-            <canvas class="w-full overflow-x-auto font-light" id="productsChart"></canvas>
-        </div>
     </div>
-   
+    
 </x-app-layout>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
@@ -63,7 +30,7 @@
         data: {
             labels: JSON.parse(chartData.labels),
             datasets: [{
-                label: 'Wartosć sprzedaży',
+                label: " {{__('reports.sales_value')}}",
                 data: JSON.parse(chartData.dataset),
                 backgroundColor: JSON.parse(chartData.colours),
             }]
@@ -87,7 +54,7 @@
         data: {
             labels: JSON.parse(chartData.labels),
             datasets: [{
-                label: 'Wartość sprzedaży',
+                label: " {{__('reports.sales_value')}}",
                 data: JSON.parse(chartData.dataset),
                 backgroundColor: JSON.parse(chartData.colours),
                 borderWidth: 1
@@ -112,7 +79,7 @@
         data: {
             labels: JSON.parse(chartData.labels),
             datasets: [{
-                label: 'Wartość sprzedaży',
+                label: " {{__('reports.sales_value')}}",
                 data: JSON.parse(chartData.dataset),
                 backgroundColor: JSON.parse(chartData.colours),
                 borderWidth: 1

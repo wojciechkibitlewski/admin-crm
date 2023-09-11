@@ -21,9 +21,14 @@ class LeadTable extends Component
         $this->resetPage();
     }
 
+
+
     public function render()
     {
-        $leads = Lead::search($this->search)->where('user_id',Auth::user()->id)->orderBy('created_at','desc')->paginate($this->perPage);
+        $leads = Lead::search($this->search)
+            ->where('user_id',Auth::user()->id)
+            ->orderBy('created_at','desc')
+            ->paginate($this->perPage);
 
         return view('livewire.lead.lead-table',[
             'leads' => $leads

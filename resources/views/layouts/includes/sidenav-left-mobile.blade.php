@@ -55,7 +55,23 @@
                     </li>
                 </ul>
             </li>
-
+            <li class="relative mb-2" >
+                @include('layouts.nav.link-todo')         
+            </li>
+            <li class="relative mb-2">
+                @include('layouts.nav.link-calendar')
+                <ul class="!visible relative m-0 hidden list-none p-0 data-[te-collapse-show]:block "
+                data-te-sidenav-collapse-ref>
+                    
+                    <li class="relative">
+                        @include('layouts.nav.link-calendar-timetable')
+                    </li>
+                   
+                </ul>
+            </li>
+            <li class="relative mb-2" >
+                @include('layouts.nav.link-reports')         
+            </li>
             <li class="relative mb-2">
                 @include('layouts.nav.link-settings')
                 <ul class="!visible relative m-0 hidden list-none p-0 data-[te-collapse-show]:block "
@@ -71,12 +87,6 @@
                         @include('layouts.nav.link-settings-categories')
                     </li>
                 </ul>
-            </li>
-            <li class="relative mb-2" >
-                @include('layouts.nav.link-reports')         
-            </li>
-            <li class="relative mb-2" >
-                @include('layouts.nav.link-todo')         
             </li>
         </ul>    
 </nav>

@@ -26,4 +26,6 @@ return [
     'logout' => 'Wyloguj się',
     'reports'=>'Analizy i raporty',
     'todo' => 'Lista zadań',
+    'calendar' => 'Kalendarz',
+    'calendar_schelude' => 'Harmonogram',
 ];

@@ -26,5 +26,7 @@ return [
     'logout' => 'Вийти',
     'reports'=>'Аналізи та звіти',
     'todo' => 'Список завдань',
+    'calendar' => 'Календар',
+    'calendar_schelude' => 'Pозклад',
 
 ];

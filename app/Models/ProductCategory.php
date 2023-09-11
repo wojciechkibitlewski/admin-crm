@@ -14,3 +14,4 @@ class ProductCategory extends Model
         'user_id',
     ];
 }
+

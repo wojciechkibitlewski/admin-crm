@@ -24,8 +24,20 @@ class Lead extends Model
         'client_id'
     ];
 
+        public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
     public function scopeSearch($query, $value)
     {
-        $query -> where('title','like',"%{$value}%");
+        $query->where(function ($query) use ($value) {
+            $query->where('title', 'like', "%{$value}%")
+                ->orWhereHas('client', function ($query) use ($value) {
+                    $query->where('name', 'like', "%{$value}%")
+                        ->orWhere('email', 'like', "%{$value}%")
+                        ->orWhere('phone', 'like', "%{$value}%");
+                });
+        });
     }
 }

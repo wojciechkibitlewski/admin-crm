@@ -87,4 +87,7 @@ return [
     'client_social' => 'Social media',
     'client_firm' => 'Firm',
     'client_note' => 'Notes about the customer',
+
+    'add_to_todo' => 'Add to task list',
+
 ];

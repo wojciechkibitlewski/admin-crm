@@ -1,0 +1,34 @@
+<?php
+
+return [
+    'raports' => 'Raporty i analizy',
+    'sales_more' => 'Więcej raportów nt sprzedaży',
+    'sales_month' => 'Sprzedaż łączna z podziałem na miesiące w',
+    'sales_value' => 'Wartosć sprzedaży',
+    'sales_in_month' => 'Sprzedaż w danym miesiącu',
+    'sales_category' => 'Sprzedaż w zależności od kategorii usługi/produktu',
+
+
+    'reports_sales' => 'Raporty i analizy. Sprzedaż',
+
+    'clients_more' => 'Więcej raportów nt klientów',
+    'clients_top' => 'Top 10. Najlepsi klienci w',
+
+    'products_more' => 'Więcej raportów nt klientów',
+    'products_top' => 'TOP 10. Najlepiej sprzedające się produkty w',
+
+    'see_more' => 'Więcej',
+
+    'data' => 'Data',
+    'client' => 'Klient',
+    'title' => 'Tytuł',
+    'value' => 'Wartość',
+    'payment'=> 'Zapłacono',
+    'sum' => 'Suma',
+    'select_year' => 'Wybierz rok',
+    'select_month' => 'Wybierz miesiąc',
+    'no_data' => 'Brak danych do wyświetlenia',
+
+    'category' => 'Kategoria',
+
+];

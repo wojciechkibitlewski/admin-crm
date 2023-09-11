@@ -11,6 +11,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\CalendarController;
 
 
 Route::group(['prefix' => LaravelLocalization::setLocale()], function()
@@ -31,8 +32,14 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         
         // reports
         Route::get('reports', [ReportsController::class, 'index'])->name('reports');
+        Route::get('reports/sales', [ReportsController::class, 'sales'])->name('reports.sales');
+
         // todo
         Route::get('todo', [TodoController::class, 'index'])->name('todo');
+
+        // calendar
+        Route::get('calendar/schelude', [CalendarController::class, 'schelude'])->name('calendar.schelude');
+        Route::get('calendar', [CalendarController::class, 'schelude'])->name('calendar');
 
         // settings
         Route::get('/settings', function() { 

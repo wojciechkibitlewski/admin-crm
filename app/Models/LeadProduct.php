@@ -17,3 +17,4 @@ class LeadProduct extends Model
         'user_id',
     ];
 }
+

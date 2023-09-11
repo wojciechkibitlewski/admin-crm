@@ -26,6 +26,8 @@ return [
     'logout' => 'Log Out',
     'reports'=>'Analyses and reports',
     'todo' => 'List of tasks',
+    'calendar' => 'Calendar',
+    'calendar_schelude' => 'Schedule',
 
 
 ];

@@ -11,8 +11,30 @@ use App\Models\Salessource;
 use App\Models\Product;
 use App\Models\ProductCategory;
 
+use App\Models\Lead;
+use App\Models\Todo;
+
+
 class Helper
 {
+    public static function getLeadByDate(string $date)
+    {
+        $leads = Lead::where('user_id', Auth::user()->id)
+            ->where('executionDate', $date)
+            ->orderBy('executionTime', 'asc')
+            ->get();
+        return $leads;
+    }
+
+    public static function getTodoByDate(string $date)
+    {
+        $todos = Todo::where('user_id', Auth::user()->id)
+            ->where('date', $date)
+            ->orderBy('order','asc')
+            ->get();
+        return $todos;
+    }
+
     public static function getMonthName(string $string)
     {
         
@@ -38,28 +60,24 @@ class Helper
     public static function getClientName(string $id)
     {
         $client = Client::findOrFail($id);
-        //$client = Client::select('name')->where('id','=',$id)->get();
         return $client->name;
     }
 
     public static function getStateName(string $id)
     {
         $type = Salestype::findOrFail($id);
-        //$client = Client::select('name')->where('id','=',$id)->get();
         return $type->type;
     }
     
     public static function getSourceName(string $id)
     {
         $source = Salessource::findOrFail($id);
-        //$client = Client::select('name')->where('id','=',$id)->get();
         return $source->source;
     }
 
     public static function getProductName(string $id)
     {
         $product = Product::findOrFail($id);
-        //$client = Client::select('name')->where('id','=',$id)->get();
         return $product->name;
     }
 
