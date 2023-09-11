@@ -1,5 +1,5 @@
 <div>
-<div class="bg-white rounded-xl p-4 dark:bg-gray-800 ">
+<div class="bg-white rounded-xl p-4 dark:bg-gray-800 mb-4">
     <h1 class="text-2xl">{{__('reports.sales_in_month')}}</h1>
     <div class="flex flex-row justify-between mb-4">
         <div class="flex flex-row items-center  mr-2 ">
@@ -57,8 +57,8 @@
             @endforeach 
             
             <tr
-                class="border-b transition duration-300 ease-in-out font-bold bg-gray-300
-                hover:bg-gray-200 dark:border-neutral-500 dark:hover:bg-neutral-600">
+                class="border-b text-gray-400 bg-gray-100 font-bold
+                    dark:bg-gray-600 dark:text-gray-100 dark:border-neutral-500">
                     <td class="whitespace-nowrap px-2 py-2"></td>
                     <td class="whitespace-nowrap px-2 py-2"></td>
                     <td class="whitespace-nowrap px-2 py-2">{{__('reports.sum')}}</td>

@@ -1,5 +1,6 @@
 <?php
 
+
 return [
     'raports' => 'Raporty i analizy',
     'sales_more' => 'Więcej raportów nt sprzedaży',
@@ -7,7 +8,8 @@ return [
     'sales_value' => 'Wartosć sprzedaży',
     'sales_in_month' => 'Sprzedaż w danym miesiącu',
     'sales_category' => 'Sprzedaż w zależności od kategorii usługi/produktu',
-
+    'sales_year_to_year' => 'Sprzedaż łączna rok do roku',
+    'sales_year_category' => 'Sprzedaż łączna w podziale na kategorie',
 
     'reports_sales' => 'Raporty i analizy. Sprzedaż',
 

@@ -59,21 +59,23 @@
                         <div class="md:flex w-full">
                             @if($leads)
                                 @foreach($leads as $l)
-                                
-                                    <div 
-                                    class="w-full md:w-80 p-2 rounded-xl min-h-20 bg-gray-300 mb-2 md:mr-2
-                                    dark:bg-gray-700" 
-                                    >
-                                        <div class="text-xs">{{__('calendar.time')}} {{ date("H:i", strtotime($l->executionTime)) }}</div>
-                                        <div class="text-xl">{{$l->title}}</div>
-                                        <div class="text-xs">{{ Helper::getClientName($l->client_id) }}</div>
-                                    </div>
-                                
+                                    
+                                        <div 
+                                        wire:key="{{$l->prefix}}" id="{{$l->prefix}}" 
+                                        wire:click="showLead('{{ $l->prefix }}')" 
+                                        class="w-full md:w-80 p-2 rounded-xl min-h-20 bg-gray-300 mb-2 md:mr-2
+                                        dark:bg-gray-700 cursor-pointer" 
+                                        >
+                                            <div class="text-xs">{{__('calendar.time')}} {{ date("H:i", strtotime($l->executionTime)) }}</div>
+                                            <div class="text-xl">{{$l->title}}</div>
+                                            <div class="text-xs">{{ Helper::getClientName($l->client_id) }}</div>
+                                        </div>
                                 @endforeach
                             @endif
                             @if($todos)
                                 @foreach($todos as $todo)
-                                    <div class="w-full md:w-80 p-2 rounded-xl h-20 bg-emerald-200 mb-2 md:mr-2 dark:bg-emerald-800">
+                                    <div wire:key="{{$todo->id}}" id="{{$todo->id}}"
+                                    class="w-full md:w-80 p-2 rounded-xl h-20 bg-emerald-200 mb-2 md:mr-2 dark:bg-emerald-800">
                                         {{$todo->name}}
                                     </div>
                                 @endforeach
@@ -125,6 +127,9 @@
             </ul>
         </div>    
     </div>
+    <!-- livewire component modal  -->
+    @include('livewire.calendar.modals.leadModal')
+
 </div>
 
 

@@ -12,6 +12,8 @@
         <div >
             @livewire('sales.sales-month-table')
             @livewire('sales.sales-category')
+            @livewire('sales.sales-year-category')
+            @livewire('sales.sales-year-to-year')
 
         </div>
         

@@ -20,14 +20,30 @@ class Schelude extends Component
 
     public $currentMonth;
     public $currentYear;
+    public $prefix;
+    public $leadsToModal;
+    public $showLeadModal;
+
+    protected $listeners = ['showLead'];
 
     public function mount()
     {
-        // $this->currentMonth = date('m');
         $this->currentMonth = date('m');
         $this->currentYear = date('Y');
+        $this->leadsToModal = '';
     }
 
+    public function showLead($prefix)
+    {
+        $this->prefix = $prefix;
+        //dd($prefix);
+        $this->leadsToModal = Lead::where('prefix', $this->prefix)
+            ->where('user_id',Auth::user()->id)
+            ->first();
+        
+        $this->showLeadModal=true;
+            
+    }
     public function updatedSearch()
     {
         $this->resetPage();
@@ -58,6 +74,7 @@ class Schelude extends Component
 
         return view('livewire.calendar.schelude',[
             'days' => $this->days,
+            'leadsToModal' => $this->leadsToModal,
         ]);
     }
 

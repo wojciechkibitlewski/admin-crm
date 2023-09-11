@@ -1,14 +1,10 @@
-
-<x-modal wire:model="showLeadAllModal">
-    <x-slot name="title">
-        Hello World
-    </x-slot>
-
-    <x-slot name="content">
-        Hi! 👋
-    </x-slot>
-
-    <x-slot name="buttons">
-        Buttons go here...
-    </x-slot>
+<x-modal wire:model="showLeadModal">
+    <div class="p-6">
+        @if($leadsToModal)
+        <div class="p-4 border-b border-gray-200 dark:border-gray-600">
+            <h3 class="font-medium text-2xl">{{$leadsToModal->title}}</h3>
+            
+        </div>
+        @endif
+    </div>
 </x-modal>

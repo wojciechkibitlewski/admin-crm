@@ -9,41 +9,25 @@
     <div class="relative pb-10">
 
         @include('includes.message')
-        <div>
-            @include('reports.includes.sales-index')
+        <div class="p-4">
+            @livewire('sales.sales-month-table')
+            @livewire('sales.sales-category')
+            @livewire('sales.sales-year-category')
+            @livewire('sales.sales-year-to-year')
+            
             @include('reports.includes.topclients-index')
             @include('reports.includes.topproducts-index')
 
         </div>
         
+
     </div>
     
 </x-app-layout>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script>
-    var chartData = @json($chartData);
-    var ctx = document.getElementById('userChart');
-    var userChart = new Chart(ctx, {
-        type: 'bar', // Możesz wybrać inny rodzaj wykresu
-        data: {
-            labels: JSON.parse(chartData.labels),
-            datasets: [{
-                label: " {{__('reports.sales_value')}}",
-                data: JSON.parse(chartData.dataset),
-                backgroundColor: JSON.parse(chartData.colours),
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
+
 
 <script>
     var chartData = @json($chartDataClient);

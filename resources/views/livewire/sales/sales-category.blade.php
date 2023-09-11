@@ -1,5 +1,5 @@
 <div>
-<div class="bg-white rounded-xl p-4 dark:bg-gray-800 ">
+<div class="bg-white rounded-xl p-4 dark:bg-gray-800 mb-4">
     <h1 class="text-2xl">{{__('reports.sales_category')}}</h1>
     <div class="flex flex-row justify-between mb-4">
         <div class="flex flex-row items-center  mr-2 ">
@@ -38,7 +38,6 @@
             <tr>
                 <th scope="col" class="px-2 py-2 font-light">{{__('reports.category')}}</th>
                 <th scope="col" class="px-2 py-2 font-light text-right">{{__('reports.value')}}</th>
-                <th scope="col" class="px-2 py-2 font-light text-right">{{__('reports.payment')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -48,16 +47,14 @@
                 hover:bg-gray-200 dark:border-neutral-500 dark:hover:bg-neutral-600">
                     <td class="whitespace-nowrap px-2 py-2">{{ $item->category }}</td>
                     <td class="whitespace-nowrap px-2 py-2 text-right">{{ $item->totalValue }} zł</td>
-                    <td class="whitespace-nowrap px-2 py-2 text-right"> zł</td>
                 </tr>
             @endforeach 
             
             <tr
-                class="border-b transition duration-300 ease-in-out font-bold bg-gray-300
-                hover:bg-gray-200 dark:border-neutral-500 dark:hover:bg-neutral-600">
+                class="border-b text-gray-400 bg-gray-100 font-bold
+                    dark:bg-gray-600 dark:text-gray-100 dark:border-neutral-500">
                     <td class="whitespace-nowrap px-2 py-2">{{__('reports.sum')}}</td>
                     <td class="whitespace-nowrap px-2 py-2 text-right">{{ $data->sumLeadValue }} zł</td>
-                    <td class="whitespace-nowrap px-2 py-2 text-right"> zł</td>
                 </tr>
             
             </tbody>

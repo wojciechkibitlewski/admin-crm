@@ -3,6 +3,8 @@
 namespace App\Helpers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 use App\Models\Client;
 use App\Models\User;
@@ -17,6 +19,33 @@ use App\Models\Todo;
 
 class Helper
 {
+
+    public static function getSalesbyCategory(string $category_id, string $month, string $year)
+    {
+        $sales = DB::table('lead_products')
+            ->join('leads', 'leads.id', '=', 'lead_products.lead_id')
+            ->join('products', 'lead_products.product_id', '=', 'products.id')
+            ->join('product_categories', 'products.category_id', '=', 'product_categories.id')
+            ->select(
+                DB::raw('SUM(lead_products.product_price * lead_products.quant) as totalValue'),
+            )
+            ->where('lead_products.user_id', Auth::user()->id)
+            ->where('product_categories.id', $category_id)
+            ->whereYear('leads.executionDate', $year)
+            ->whereMonth('leads.executionDate', $month)
+            ->groupBy('products.category_id')
+            ->first(); 
+        
+        if(isset($sales)) {
+            return $sales->totalValue;
+        } else {
+            return null;
+        }    
+        
+        //return $sales->totalValue;
+    }
+
+
     public static function getLeadByDate(string $date)
     {
         $leads = Lead::where('user_id', Auth::user()->id)

@@ -1,9 +1,8 @@
-<x-a-header>
-    <x-a-link-add href="#" title="{{__('reports.products_more')}}">
-        <span class="hidden md:inline-block">{{__('reports.products_more')}}</span>
-        <span class="md:hidden">{{__('reports.see_more')}}</span>
-    </x-a-link-add>
-    <h2 class="text-lg dark:text-black">{{__('reports.products_top')}} {{$currentYear}}</h2>
-</x-a-header> 
+<div class="bg-white rounded-xl p-4 dark:bg-gray-800  mb-4">
+    <h1 class="text-2xl">{{__('reports.products_top')}} {{$currentYear}}</h1>
+    
+    <div class="w-full overflow-x-auto mb-[20px]">
+        <canvas class="w-full p-4 mb-4  overflow-x-auto font-light" id="productsChart"></canvas>
+    </div>
+</div>
 
-<canvas class="w-full p-4 mb-4  overflow-x-auto font-light" id="productsChart"></canvas>

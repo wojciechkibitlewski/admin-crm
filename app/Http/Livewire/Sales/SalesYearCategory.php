@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Sales;
 
 use Livewire\Component;
-use Livewire\WithPagination;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -11,19 +10,14 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Lead;
 use App\Models\ProductLead;
 
-class SalesCategory extends Component
+class SalesYearCategory extends Component
 {
-    use WithPagination;
-
     public $currentYear;
 
     public function mount()
     {
-        // $this->currentMonth = date('m');
-        $this->currentMonth = date('m');
         $this->currentYear = date('Y');
     }
-
     public function render()
     {
         $month = [
@@ -40,6 +34,7 @@ class SalesCategory extends Component
             ['name' => 'November', 'value'=> '11'],
             ['name' => 'December', 'value'=> '12'],
         ];
+
         $year = [
             ['name' => '2013', 'value'=> '2013'],
             ['name' => '2014', 'value'=> '2014'],
@@ -60,51 +55,29 @@ class SalesCategory extends Component
             ['name' => '2029', 'value'=> '2029'],
             ['name' => '2030', 'value'=> '2030'],
         ];
-        
-        // $data = Lead::select(
-        //     DB::raw('SUM(leadValue) as sumLeadValue'),
-        //     DB::raw('SUM(advanceValue) as sumAdvanceValue')
-        // )
-        // ->where('user_id', Auth::user()->id)
-        // ->whereYear('executionDate', $this->currentYear)
-        // ->whereMonth('executionDate', $this->currentMonth)
-        // ->first();
 
-        $data = DB::table('lead_products')
+        $categories = DB::table('lead_products')
             ->join('leads', 'leads.id', '=', 'lead_products.lead_id')
             ->join('products', 'lead_products.product_id', '=', 'products.id')
             ->join('product_categories', 'products.category_id', '=', 'product_categories.id')
             ->select(
-                DB::raw('SUM(lead_products.product_price * lead_products.quant) as sumLeadValue'),
-            )
-            ->where('leads.user_id', Auth::user()->id)
-            ->whereYear('leads.executionDate', $this->currentYear)
-            ->whereMonth('leads.executionDate', $this->currentMonth)
-            ->first(); 
-
-            
-        $leads = DB::table('lead_products')
-            ->join('leads', 'leads.id', '=', 'lead_products.lead_id')
-            ->join('products', 'lead_products.product_id', '=', 'products.id')
-            ->join('product_categories', 'products.category_id', '=', 'product_categories.id')
-            ->select(
-                DB::raw('SUM(lead_products.product_price * lead_products.quant) as totalValue'),
                 DB::raw('product_categories.category as category'),
+                DB::raw('product_categories.id as category_id'),
+
             )
             ->where('lead_products.user_id', Auth::user()->id)
             ->whereYear('leads.executionDate', $this->currentYear)
-            ->whereMonth('leads.executionDate', $this->currentMonth)
             ->groupBy('products.category_id')
             ->orderBy('product_categories.category', 'asc')
-            ->get(); 
+            ->get();
 
-
-        return view('livewire.sales.sales-category',[
-            'leads' => $leads,
-            'data' => $data,
-            'month'=>$month,
-            'year'=>$year,
-        ]);
+        
+        return view('livewire.sales.sales-year-category',
+            [
+               'year' => $year,
+               'month' => $month,
+               'currentYear' => $this->currentYear,
+               'categories' => $categories,
+            ]);
     }
 }
-
