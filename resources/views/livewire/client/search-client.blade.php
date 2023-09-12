@@ -1,4 +1,5 @@
 <div>
+    
     <div class="mb-4">
         <label for="name" class="">{{__('leads.client_name')}}<span class="text-red-600"> (*)</label>
         <input id="name" type="text" 

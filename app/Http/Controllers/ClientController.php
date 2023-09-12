@@ -6,6 +6,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\View\View;
 use Carbon\Carbon;
@@ -23,20 +25,28 @@ class ClientController extends Controller
 
     } 
 
-    public function create()
+    public function create():View
     {
         return view('clients.create');
     }
    
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => 'required',
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
         ]);
+    
+        if ($validator->fails()) {
+            return redirect('clients/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $inputs = $request->all();
         //dd($inputs);
         if(!empty($inputs)){
             $client = new Client;
+            $client->prefix = Str::random(18); 
             $client->name = isset($inputs['name']) ? $inputs['name'] : '';
             $client->email = isset($inputs['email']) ? $inputs['email'] : '';
             $client->phone = isset($inputs['phone']) ? $inputs['phone'] : '';
@@ -55,24 +65,25 @@ class ClientController extends Controller
             //dd($client);
             try {
                 if ($client->save()) {
-                    return redirect()
-                        ->route('clients.index')
+                    return redirect('clients/show/'.$client->prefix)
                         ->with('success', 'Clients created successfully.');
                 }
             } catch (\Exception $e) {
                 //dd($e);
-                return $e->getMessage();
+                return redirect('clients/create')
+                        ->withErrors($e->getMessage())
+                        ->withInput();
                                 
             }
         }
     }
 
-    public function show(Request $request, string $id)
+    public function show(Request $request, string $prefix)
     {
-        $client = Client::where('user_id',Auth::user()->id)->where('id',$id)->first();
-        $leads = Lead::where('client_id', $id)->get();
-        $leadsValue = Lead::where('client_id', $id)->sum(DB::raw('leadValue'));
-        $advanceValue = Lead::where('client_id', $id)->sum(DB::raw('advanceValue'));
+        $client = Client::where('user_id',Auth::user()->id)->where('prefix',$prefix)->first();
+        $leads = Lead::where('client_id', $client->id)->get();
+        $leadsValue = Lead::where('client_id', $client->id)->sum(DB::raw('leadValue'));
+        $advanceValue = Lead::where('client_id',$client->id)->sum(DB::raw('advanceValue'));
 
         return view('clients.show',[
             'client' => $client,
@@ -82,22 +93,28 @@ class ClientController extends Controller
         ]);
     }
 
-    public function edit(Request $request, string $id)
+    public function edit(Request $request, string $prefix)
     {
-        $client = Client::where('user_id',Auth::user()->id)->where('id',$id)->first();
+        $client = Client::where('user_id',Auth::user()->id)->where('prefix',$prefix)->first();
         
         return view('clients.edit',compact('client'));        
     }
 
     public function update(Request $request)
     {
-        $client = Client::where('user_id',Auth::user()->id)->where('id',$request['id'])->first();
+        $client = Client::where('user_id',Auth::user()->id)->where('prefix',$request['prefix'])->first();
 
-        $request->validate([
-            'name' => 'required',
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
         ]);
+    
+        if ($validator->fails()) {
+            return redirect('clients/edit')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
-        Client::whereId( $request['id'])->where('user_id',Auth::user()->id)->update([
+        Client::where('prefix', $client->prefix)->where('user_id',Auth::user()->id)->update([
             'name' => $request->name,
             'email' => isset($request->email) ? $request->email : ' ',
             'phone' => isset($request->phone) ? $request->phone : ' ',
@@ -114,18 +131,16 @@ class ClientController extends Controller
         $activity->what =  ''.$client->name.' in Klienci';
         $activity->save();
 
-        return redirect()
-                ->route('clients.index')
-                ->with('success','Client updated successfully.');
-
+        return redirect('clients/show/'.$client->prefix)
+                        ->with('success', 'Client updated successfully.');
 
     }
 
     public function destroy(Request $request)
     {
-        $client = Client::where('user_id',Auth::user()->id)->where('id',$request['id'])->first();
+        $client = Client::where('user_id',Auth::user()->id)->where('prefix',$request['prefix'])->first();
 
-        Client::whereId( $request['id'])->where('user_id',Auth::user()->id)->update([
+        Client::where('prefix',$request['prefix'])->where('user_id',Auth::user()->id)->update([
             'name' => '[destroy]',
             'email' => ' ',
             'phone' => ' ',
@@ -141,9 +156,10 @@ class ClientController extends Controller
         $activity->what = $client->name.' from Klienci';
         $activity->save();
 
-        return redirect()
-            ->route('clients.index')
-            ->with('success','Client deleted successfully.');
+        return redirect('clients/index/')
+            ->with('success', 'Client deleted successfully.');
+
+        
 
     }
 }

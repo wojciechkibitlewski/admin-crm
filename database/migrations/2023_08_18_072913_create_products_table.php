@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('sku')->unique(); 
             $table->string('name'); 
-            $table->longText('desc');          
-            $table->string('quant');
+            $table->longText('desc')->nullable();       
+            $table->string('quant')->nullable();
             $table->float('price'); 
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('product_categories');

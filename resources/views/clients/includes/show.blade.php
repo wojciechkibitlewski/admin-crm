@@ -46,7 +46,7 @@
         </div>
         <!-- edit client  -->
         <div class="mt-4 w-full border-y border-gray-200 dark:border-gray-600 py-4 ">
-            <a  href="{{route('clients.edit',$client->id)}}" title="{{__('clients.edit')}}"
+            <a  href="{{route('clients.edit',$client->prefix)}}" title="{{__('clients.edit')}}"
             class="block w-full text-sm bg-gray-600 text-white rounded px-4 py-2 text-center"> 
             {{__('clients.edit')}}
             </a>  

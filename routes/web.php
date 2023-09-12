@@ -88,8 +88,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
         Route::get('clients/create', [ClientController::class, 'create'])->name('clients.create');
         Route::post('clients/store', [ClientController::class, 'store'])->name('clients.store');
-        Route::get('clients/show/{id}', [ClientController::class, 'show'])->name('clients.show');
-        Route::get('clients/edit/{id}', [ClientController::class, 'edit'])->name('clients.edit');
+        Route::get('clients/show/{prefix}', [ClientController::class, 'show'])->name('clients.show');
+        Route::get('clients/edit/{prefix}', [ClientController::class, 'edit'])->name('clients.edit');
         Route::patch('clients/update', [ClientController::class, 'update'])->name('clients.update');
         Route::patch('clients/destroy', [ClientController::class, 'destroy'])->name('clients.destroy');
 

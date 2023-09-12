@@ -53,7 +53,7 @@
                         <div class="p-1">
                             <a 
                             class="bg-purple-200 p-1 px-2 border border-white rounded-md dark:bg-purple-900" 
-                            href="{{ route('clients.show',$item->id) }}">{{__('clients.show')}}</a>
+                            href="{{ route('clients.show',$item->prefix) }}">{{__('clients.show')}}</a>
                         </div>
                         
                         </div>

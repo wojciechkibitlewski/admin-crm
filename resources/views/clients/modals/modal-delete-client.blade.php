@@ -37,7 +37,7 @@
           {{__('clients.cancel')}}
         </button>
         <form action="{{ route('clients.destroy') }}" method="POST">
-            <input type="hidden" name="id" value="{{$client->id}}" />
+            <input type="hidden" name="prefix" value="{{$client->prefix}}" />
             <input type="hidden" name="_method" value="PATCH">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <button 

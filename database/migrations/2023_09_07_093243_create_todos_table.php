@@ -16,10 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->date('date')->nullable();
             $table->string('kaban');
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->integer('order');
-            $table->string('lead_prefix')->default(false);
-            $table->index('lead_prefix');
+            $table->string('lead_prefix')->nullable()->index();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 

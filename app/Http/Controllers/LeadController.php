@@ -213,7 +213,7 @@ class LeadController extends Controller
             }
 
             $lead = new Lead;
-            $lead->prefix = Str::random(12);  
+            $lead->prefix = Str::random(18);  
             $lead->title = isset($inputs['title']) ? $inputs['title'] : '';
             $lead->note = isset($inputs['note']) ? $inputs['note'] : '';
             $lead->noteForClient = isset($inputs['noteForClient']) ? $inputs['noteForClient'] : '';

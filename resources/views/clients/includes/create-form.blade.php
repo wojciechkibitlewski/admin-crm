@@ -48,7 +48,7 @@
 
                     <div class="mb-4">
                         <label for="note" class="">{{__('clients.note')}}</label>
-                        <textarea id="note" class="block mt-1 rounded-md w-full border-gray-300" rows="13"
+                        <textarea id="note" class="block mt-1 rounded-md w-full border-gray-300 dark:text-black" rows="13"
                         name="note">{{old('note')}}</textarea>
                     </div>
                     

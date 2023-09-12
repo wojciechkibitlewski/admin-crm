@@ -45,7 +45,7 @@
         </thead>
         <tbody>
             @foreach ($leads as $item)
-                <tr
+                <tr id="{{ $item->prefix }}" wire:key="{{ $item->prefix }}"
                 class="border-b transition duration-300 ease-in-out 
                 hover:bg-gray-200 dark:border-neutral-500 dark:hover:bg-neutral-600">
                     <td class="whitespace-nowrap px-2 py-2">{{ date("Y-m-d", strtotime($item->created_at)) }}</td>
@@ -57,6 +57,7 @@
                     <td class="whitespace-nowrap px-2 py-2">{{ Helper::getStateName($item->type_id) }}</td>
                     <td class="whitespace-nowrap px-2 py-2 flex flex-row">
                         <div class="p-1">
+                            
                             <a 
                             class="bg-purple-200 p-1 px-2 border border-white rounded-md dark:bg-purple-900" 
                             href="{{ route('leads.show',$item->prefix) }}">{{__('leads.show')}}</a>
